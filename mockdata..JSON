@@ -1,32 +1,32 @@
-
-	game_Data:{
-            :{
-				user_Dislay_Name:"treefingers"
-				user_High_Score_Pink_Egg:14300
-				user_High_Score_Coin_Collector:12
-				user_Email:"takeruashi10@gmail.com"
-				user_Coin_Collector_Ranking:
-				user_Photo_Url:
-				user_Pink_Egg_Ranking:1
-				user_Coin_Collector_Ranking:1
-		
-			}
-			uid_2:{
-				user_Dislay_Name:"crushd tin box"
-				user_Pink_Egg_High_Score:1300
-				user_Coin_Collector_High_Score:5
-				user_Email:"22033cc@hvhs.school.nz"
-				user_Photo_Url:
-				user_Pink_Egg_Ranking:3
-				user_Coin_Collector_Ranking:3
-			}
-			uid_3:{
-				user_Dislay_Name:"creep123"
-				user_High_Score_Pink_Egg:1600
-				user_High_Score_Coin_Collector:7
-				user_Email:"firebaseburner123@gmail.com"
-				user_Photo_Url:
-				user_Pink_Egg_Ranking:2
-				user_Coin_Collector_Ranking:2
-
-			}
+{
+	"user_Data":{
+        "YSzgy05DfoO0kGdaJnLQKzczQFF3":{
+			"dislay_Name":"treefingers"
+			"High_Score_PES":14300
+			"high_Score_COC":12
+			"email":"takeruashi10@gmail.com"
+			"photo_URL":null
+			"ranking_PES":1
+			"ranking_COC":1
+		},
+		"ojXn01JgGTS0rsAgETagRP1hG1W2":{
+			"display_Name":"crushd tin box"
+			"high_Score_PES":1300
+			"high_Score_COC":5
+			"email":"22033cc@hvhs.school.nz"
+			"photo_URL":null
+			"ranking_PES":3
+			"ranking_COC":3
+			
+		},
+		"8ZKd9rUCpMT4fd1NADgg4F4EdMx2":{
+			"dislay_Name":"creep123"
+			"high_Score_PES":1600
+			"high_Score_COC":7
+			"email":"firebaseburner123@gmail.com"
+			"photo_URL":null
+			"ranking_PES":2
+			"ranking_COC":3
+		}
+	}
+}
