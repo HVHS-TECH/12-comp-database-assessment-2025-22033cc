@@ -1,0 +1,32 @@
+
+	game_Data:{
+            :{
+				user_Dislay_Name:"treefingers"
+				user_High_Score_Pink_Egg:14300
+				user_High_Score_Coin_Collector:12
+				user_Email:"takeruashi10@gmail.com"
+				user_Coin_Collector_Ranking:
+				user_Photo_Url:
+				user_Pink_Egg_Ranking:1
+				user_Coin_Collector_Ranking:1
+		
+			}
+			uid_2:{
+				user_Dislay_Name:"crushd tin box"
+				user_Pink_Egg_High_Score:1300
+				user_Coin_Collector_High_Score:5
+				user_Email:"22033cc@hvhs.school.nz"
+				user_Photo_Url:
+				user_Pink_Egg_Ranking:3
+				user_Coin_Collector_Ranking:3
+			}
+			uid_3:{
+				user_Dislay_Name:"creep123"
+				user_High_Score_Pink_Egg:1600
+				user_High_Score_Coin_Collector:7
+				user_Email:"firebaseburner123@gmail.com"
+				user_Photo_Url:
+				user_Pink_Egg_Ranking:2
+				user_Coin_Collector_Ranking:2
+
+			}
