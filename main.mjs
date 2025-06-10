@@ -20,7 +20,7 @@ import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify
     window.fb_Initialise = fb_Initialise;
     window.fb_Authenticate = fb_Authenticate;
     window.fb_RunRecords = fb_RunRecords;
-    window.fb_bobify() = fb_bobify;
+    window.fb_bobify = fb_bobify;
 /**************************************************************/
 // index.html main code
 /**************************************************************/

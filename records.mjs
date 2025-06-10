@@ -147,9 +147,9 @@ function fb_bobify() {
         'color: ' + COL_C +
         '; background-color: ' + COL_B + ';');
 
-    const dbReference = ref(fb_Db, "users_Data/" + userUid + "/display_Name");
+    const dbReference = ref(fb_Db, "user_Data/" + userUid + "/display_Name");
 
-    update(dbReference, {"Mr Bob"}).then(() => {
+    update(dbReference, {display_Name:"Mr Bob"}).then(() => {
         console.log('%c Mr bobified your name ',
             'color: ' + COL_C +
             '; background-color: ' + COL_G + ';');
