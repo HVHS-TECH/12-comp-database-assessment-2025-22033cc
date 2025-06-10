@@ -14,12 +14,13 @@ console.log('%c main.mjs',
 // Import all external constants & functions required
 /***************************************************************/
 // Import all the constants & functions required from fb_io module
-import { fb_Initialise, fb_Authenticate,fb_RunRecords
+import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify
  }
     from './records.mjs';
     window.fb_Initialise = fb_Initialise;
     window.fb_Authenticate = fb_Authenticate;
     window.fb_RunRecords = fb_RunRecords;
+    window.fb_bobify() = fb_bobify;
 /**************************************************************/
 // index.html main code
 /**************************************************************/

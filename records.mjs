@@ -35,7 +35,7 @@ import { ref, set, get, update, query, orderByChild, limitToFirst }
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify
 }
 
 
@@ -93,13 +93,10 @@ function fb_Authenticate() {
             alert("Uh Oh, Something went wrong!")
             console.log(error)
         });
+    
 
 }
-/***************************************************************
-// function fb_RunRecords()
-// called by html button "Check stats"
-// reads through users records
- ****************************************************************/
+
 function fb_RunRecords(){
 
     if(userUid==null){
@@ -119,6 +116,9 @@ function fb_RunRecords(){
                 userStats = Object.values(snapshot.val());
                 //print out userStats
                 console.log(userStats);
+                document.getElementById("id").innerHTML(
+                    "<p> i am the walrus</p>"
+                )
 
             } else {
                 console.log('%c Record NOT found ',
@@ -134,5 +134,30 @@ function fb_RunRecords(){
             console.log(error);
         });        
 
+    
     }
+}
+/***************************************************************
+// function fb_bobify()
+// called by html button "bobify username "
+// increases "price" by 10%
+ ****************************************************************/
+function fb_bobify() {
+    console.log('%c fb_updateRecord ',
+        'color: ' + COL_C +
+        '; background-color: ' + COL_B + ';');
+
+    const dbReference = ref(fb_Db, "users_Data/" + userUid + "/display_Name");
+
+    update(dbReference, {"Mr Bob"}).then(() => {
+        console.log('%c Mr bobified your name ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_G + ';');
+            alert("your username has been changed to mr bob")
+    }).catch((error) => {
+        console.log('%c Error! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_R + ';');
+        console.log(error);
+    });
 }
