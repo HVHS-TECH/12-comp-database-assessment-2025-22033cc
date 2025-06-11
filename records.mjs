@@ -15,6 +15,8 @@ console.log('%c fb_io.mjs',
 var fb_Db;
 var userUid;
 var userStats;
+var userEmail;
+var userPhoto;
 /**************************************************************/
 // Import all external constants & functions required
 /**************************************************************/
@@ -77,24 +79,55 @@ function fb_Authenticate() {
     console.log('%c authenticate():',
         'color:' + COL_C +
         'background-color:' + COL_B + ';');
-    const AUTH = getAuth(); //something is wrong here
+    const AUTH = getAuth(); 
     const PROVIDER = new GoogleAuthProvider();
     PROVIDER.setCustomParameters({
         prompt: 'select_account'
     });
-
+    //login to users email
     signInWithPopup(AUTH, PROVIDER).then((result) => {
         alert("thank you for signing correctly")
+        //take users uid, email, and photo url
         userUid = result.user.uid;
+        userEmail = result.user.email;
+        userPhoto = "fill in later";
         console.log(userUid)
         const REF = ref(fb_Db, "uid")
+
+        //see if they have logged in before:
+         const dbReference = ref(fb_Db, "user_Data/" + userUid +"/display_Name");
+        get(dbReference).then((snapshot) => {
+             var firstName = snapshot.val();
+
+             //if they haven't, make them choose username
+             if (firstName == null){
+                alert("Welcome to this website!");
+                
+                while(firstName == null|firstName == ""){
+                    firstName = prompt("Your Username, Please");
+                }
+                //run through and write records for all games 
+                    const REF = ref(fb_Db, "user_Data/" + userUid );
+
+                    set(REF, {display_Name:firstName,email:userEmail,high_Score_COC:0,high_Score_PES:0,photo_URL:userPhoto,ranking_COC:0,ranking_PES:0 }).then(() => {
+                        console.log("PLEASE WORK")
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        console.log('%c something went wrong! ',
+                        'color: ' + COL_C +
+                        '; background-color: ' + COL_R + ';');
+                    })
+             } else{
+                alert("Welcome back!");
+             }
+        })
     })
         .catch((error) => {
             alert("Uh Oh, Something went wrong!")
             console.log(error)
         });
-    
-
+        
 }
 
 function fb_RunRecords(){
@@ -106,8 +139,9 @@ function fb_RunRecords(){
             'color: ' + COL_C +
             '; background-color: ' + COL_B + ';');
         const dbReference = ref(fb_Db, "user_Data/" + userUid);
+
         get(dbReference).then((snapshot) => {
-            var fb_data = snapshot.val();
+             var fb_data = snapshot.val();
             if (fb_data != null) {
                 console.log('%c Record found! ',
                     'color: ' + COL_C +
@@ -116,11 +150,14 @@ function fb_RunRecords(){
                 userStats = Object.values(snapshot.val());
                 //print out userStats
                 console.log(userStats);
-                document.getElementById("id").innerHTML(
-                    "<p> i am the walrus</p>"
-                )
+                document.getElementById("displayName").innerHTML = "hello "+userStats[0]+"!";
+                document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[2];
+                document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[3];
+                document.getElementById("rankingCOC").innerHTML = "Coin Collector Ranking:"+userStats[5];
+                document.getElementById("rankingPES").innerHTML = "Pink Egg Simulator Ranking"+userStats[6]
 
-            } else {
+                 
+            }else{
                 console.log('%c Record NOT found ',
                     'color: ' + COL_C +
                     '; background-color: ' + COL_R + ';');
@@ -132,11 +169,10 @@ function fb_RunRecords(){
                 'color: ' + COL_C +
                 '; background-color: ' + COL_R + ';');
             console.log(error);
-        });        
-
-    
+        })  
     }
 }
+
 /***************************************************************
 // function fb_bobify()
 // called by html button "bobify username "
@@ -147,7 +183,7 @@ function fb_bobify() {
         'color: ' + COL_C +
         '; background-color: ' + COL_B + ';');
 
-    const dbReference = ref(fb_Db, "user_Data/" + userUid + "/display_Name");
+    const dbReference = ref(fb_Db, "user_Data/" + userUid);
 
     update(dbReference, {display_Name:"Mr Bob"}).then(() => {
         console.log('%c Mr bobified your name ',
