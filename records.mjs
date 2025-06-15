@@ -103,7 +103,7 @@ function fb_Authenticate() {
              if (firstName == null){
                 alert("Welcome to this website!");
                 
-                while(firstName == null|firstName == ""){
+                while(firstName == null||firstName == ""||firstName === " "){
                     firstName = prompt("Your Username, Please");
                 }
                 //run through and write records for all games 
