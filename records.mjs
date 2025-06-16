@@ -176,7 +176,7 @@ function fb_RunRecords(){
 /***************************************************************
 // function fb_bobify()
 // called by html button "bobify username "
-// increases "price" by 10%
+// changes display name to "mr Bob"
  ****************************************************************/
 function fb_bobify() {
     console.log('%c fb_updateRecord ',
@@ -196,4 +196,36 @@ function fb_bobify() {
             '; background-color: ' + COL_R + ';');
         console.log(error);
     });
+}
+/***************************************************************
+// function fb_get_high_score_PES()
+// called on running "pink Egg Simulator"
+// changes display name to "mr Bob"
+ ****************************************************************/
+function fb_get_high_score_PES(){
+    console.log('%c fb_get_high_score_PES ',
+        'color: ' + COL_C +
+        '; background-color: ' + COL_B + ';');
+        const dbReference = ref(fb_Db, "user_Data/" + userUid+"/high_score_PES");
+        get(dbReference).then((snapshot) => {
+             var fb_data = snapshot.val();
+            if (fb_data != null) {
+                console.log('%c Record found! ',
+                    'color: ' + COL_C +
+                    '; background-color: ' + COL_G + ';');
+                console.log(fb_data);
+                 
+            }else{
+                console.log('%c Record NOT found ',
+                    'color: ' + COL_C +
+                    '; background-color: ' + COL_R + ';');
+
+            }
+
+        }).catch((error) => {
+            console.log('%c Error! ',
+                'color: ' + COL_C +
+                '; background-color: ' + COL_R + ';');
+            console.log(error);
+        })  
 }

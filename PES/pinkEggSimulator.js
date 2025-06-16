@@ -29,11 +29,13 @@ console.log("hello! Welcome to my game")
     var bulletSpeed = -15;
     var bulletPower = 100;
     var bulletRegain=0;
+
     //bombs variable
     var bombSpeed = -5;
     var bombActive = false;
     var pinkEggSpeed =2;
     var controls = LETTER_KEYS;
+    
     //background variables
     var gameState = 'start';
     var enemyState = 0;
@@ -42,7 +44,8 @@ console.log("hello! Welcome to my game")
     var enemyCounter = 0;
     var firstDraw = 0;
     var randomTime = 0;
-    //shrapnel varaibels
+
+    //shrapnel variables
     var shrapnelAngle = -36;
     var shrapnelRotation = [4,7];
     var shrapnelTheta  = 0;
@@ -50,9 +53,13 @@ console.log("hello! Welcome to my game")
     var shrapnelB = 0;
     var shrapnelTotal = 0;
     var shrapnelAngle = 0;
+    
     //backgrounds
     var backgroundPlay;
     var backgroundStart;
+    
+    //database variables
+    var fb_highScore;
 /***********************************
  * set up
  ***********************************/
@@ -69,7 +76,7 @@ function setup(){
     //players bombs and bullets
     bulletGroup = new Group();
     bombGroup = new Group();
-    //bombs is seperate from sprite bomb, because you can not call a collsion of a sprite that does not exoist
+    //bombs is seperate from sprite bomb, because you can not call a collsion of a sprite that does not exist
     bombs = new Group();
     //enemy groups
     whiteEggGang = new Group();
@@ -93,16 +100,18 @@ function setup(){
     walls.add(wallRH);
     walls.add(wallLH);
     console.log(walls);
-
+    
+    //set up database 
+    
 }
 /*************************************
  * preload
  *************************************/
 function preload(){
     //preload backgrounds
-    backgroundPlay = loadImage("PES/assets/images/EggCarton.jpg") 
-    backgroundStart = loadImage("PES/assets/images/pinkEggCartons.jpg")
-    logo = loadImage("PES/assets/images/title card.png")
+    backgroundPlay = loadImage("/PES/assets/images/EggCarton.jpg");
+    backgroundStart = loadImage("/PES/assets/images/pinkEggCartons.jpg");
+    logo = loadImage("/PES/assets/images/title card.png")
 }
 /*************************************
  * draw loop
@@ -189,6 +198,10 @@ function draw(){
         background('red');
         //load button sprites
         if (firstDraw == 0){
+            if (score > fb_highScore){
+                fb_highScore = score;
+                text("You got a new high Score!",50,300)
+            }
             pinkEgg.x = PINK_EGG_START_POSITION[0];
             pinkEgg.y = PINK_EGG_START_POSITION[1];
             buttonRestart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
