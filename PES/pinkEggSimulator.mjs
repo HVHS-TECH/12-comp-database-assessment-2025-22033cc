@@ -61,9 +61,16 @@ console.log("hello! Welcome to my game")
     //database variables
     var fb_highScore;
 /***********************************
+ * 
+ */
+window.preload = preload;
+window.setup = setup;
+window.draw = draw;
+/***********************************
  * set up
  ***********************************/
 function setup(){
+    fb_Authenticate()
     //CANVAS_WIDTH = 500; CANVAS_HEIGHT=700
     //setting up the canvas
     cnv = new Canvas (CANVAS_WIDTH,CANVAS_HEIGHT,);
@@ -198,6 +205,8 @@ function draw(){
         background('red');
         //load button sprites
         if (firstDraw == 0){
+            fb_get_high_score_PES()
+            fb_data = fb_highScore;
             if (score > fb_highScore){
                 fb_highScore = score;
                 text("You got a new high Score!",50,300)

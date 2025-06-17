@@ -17,6 +17,7 @@ var userUid;
 var userStats;
 var userEmail;
 var userPhoto;
+console.log(userUid)
 /**************************************************************/
 // Import all external constants & functions required
 /**************************************************************/
@@ -37,7 +38,7 @@ import { ref, set, get, update, query, orderByChild, limitToFirst }
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score_PES,
 }
 
 
@@ -154,9 +155,7 @@ function fb_RunRecords(){
                 document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[2];
                 document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[3];
                 document.getElementById("rankingCOC").innerHTML = "Coin Collector Ranking:"+userStats[5];
-                document.getElementById("rankingPES").innerHTML = "Pink Egg Simulator Ranking"+userStats[6]
-
-                 
+                document.getElementById("rankingPES").innerHTML = "Pink Egg Simulator Ranking"+userStats[6];
             }else{
                 console.log('%c Record NOT found ',
                     'color: ' + COL_C +
@@ -206,7 +205,7 @@ function fb_get_high_score_PES(){
     console.log('%c fb_get_high_score_PES ',
         'color: ' + COL_C +
         '; background-color: ' + COL_B + ';');
-        const dbReference = ref(fb_Db, "user_Data/" + userUid+"/high_score_PES");
+        const dbReference = ref(fb_Db, "user_Data/" + userUid + "/high_score_PES");
         get(dbReference).then((snapshot) => {
              var fb_data = snapshot.val();
             if (fb_data != null) {

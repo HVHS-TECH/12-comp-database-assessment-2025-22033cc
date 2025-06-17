@@ -20,9 +20,32 @@
   BODY
 ****************************************************-->
 <body>
-    <script src="/workspaces/12-comp-database-assessment-2025-22033cc/main.mjs"></script>
-    <script src="pinkEggSimulator.js"></script> 
+    <script type="module" src="../main.mjs"></script>
+    <script type="module" src="pinkEggSimulator.mjs"></script> 
 
+    <button onclick="fb_Authenticate()">Log in</button>
+    <button onclick="fb_RunRecords()"> see stats</button>
+    <div id="top10"> 
+      <ul> 
+        <il class="board" id = "#1"> </il>
+        <il class="board" id = "#2"> </il>
+        <il class="board" id = "#3"> </il>
+        <il class="board" id = "#4"> </il>
+        <il class="board" id = "#5"> </il>
+        <il class="board" id = "#6"> </il>
+        <il class="board" id = "#7"> </il>
+        <il class="board" id = "#8"> </il>
+        <il class="board" id = "#9"> </il>
+        <il class="board" id = "#10"> </il>
+      </ul>
+    </div>
 
+    <div id="stats">
+        <p id = "displayName" class = "playerStats"></p>
+        <p id = "highScoreCOC" class = "playerStats"></p>
+        <p id = "highScorePES"class = "playerStats"></p>
+        <p id = "rankingCOC"class = "playerStats"></p>
+        <p id = "rankningPES"class = "playerStats"></p>
+    </div>
 </body>
 </html>
