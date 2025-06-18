@@ -1,3 +1,4 @@
+
 console.log("hello! Welcome to my game")
 //all universal constants
     const CANVAS_WIDTH = 500;
@@ -29,13 +30,11 @@ console.log("hello! Welcome to my game")
     var bulletSpeed = -15;
     var bulletPower = 100;
     var bulletRegain=0;
-
     //bombs variable
     var bombSpeed = -5;
     var bombActive = false;
     var pinkEggSpeed =2;
     var controls = LETTER_KEYS;
-    
     //background variables
     var gameState = 'start';
     var enemyState = 0;
@@ -44,8 +43,7 @@ console.log("hello! Welcome to my game")
     var enemyCounter = 0;
     var firstDraw = 0;
     var randomTime = 0;
-
-    //shrapnel variables
+    //shrapnel varaibels
     var shrapnelAngle = -36;
     var shrapnelRotation = [4,7];
     var shrapnelTheta  = 0;
@@ -53,45 +51,13 @@ console.log("hello! Welcome to my game")
     var shrapnelB = 0;
     var shrapnelTotal = 0;
     var shrapnelAngle = 0;
-    
     //backgrounds
     var backgroundPlay;
     var backgroundStart;
-    
-    //database variables
-    var fb_highScore;
-
-    // module global scope
-    //canvas
-let cnv;
-//creating sprite for player
-let pinkEgg;
-//creating groups
-	//players bombs and bullets
-let bulletGroup;
-let bombGroup;
-let bombs;
-//enemy groups
-let whiteEggGang;
-let brownEggGang;
-let brownBulletGang;
-//wall groups
-let walls;
-let allEggs;
-//startscreen and endscreen
-let startScreenSprites;
-let endScreenSprites;
-
-//wall for collisions
-let wallBot;
-let wallTop;
-let wallRH;
-let wallLH;
 /***********************************
  * set up
  ***********************************/
-window.setup = function(){
-    fb_Authenticate()
+function setup(){
     //CANVAS_WIDTH = 500; CANVAS_HEIGHT=700
     //setting up the canvas
     cnv = new Canvas (CANVAS_WIDTH,CANVAS_HEIGHT,);
@@ -104,7 +70,7 @@ window.setup = function(){
     //players bombs and bullets
     bulletGroup = new Group();
     bombGroup = new Group();
-    //bombs is seperate from sprite bomb, because you can not call a collsion of a sprite that does not exist
+    //bombs is seperate from sprite bomb, because you can not call a collsion of a sprite that does not exoist
     bombs = new Group();
     //enemy groups
     whiteEggGang = new Group();
@@ -128,28 +94,27 @@ window.setup = function(){
     walls.add(wallRH);
     walls.add(wallLH);
     console.log(walls);
-    
-    //set up database 
-    
+
 }
 /*************************************
  * preload
  *************************************/
-window.preload=function(){
+function preload(){
     //preload backgrounds
-    let backgroundPlay = loadImage("/PES/assets/images/EggCarton.jpg");
-    let backgroundStart = loadImage("/PES/assets/images/pinkEggCartons.jpg");
-    let logo = loadImage("/PES/assets/images/title card.png")
+    backgroundPlay = loadImage("assets/images/EggCarton.jpg") 
+    backgroundStart = loadImage("assets/images/pinkEggCartons.jpg")
+    logo = loadImage("assets/images/title card.png")
 }
-
 /*************************************
  * draw loop
  *************************************/
-window.draw = function(){
+function draw(){
+    
     //defnine visuals and background
     pinkEgg.color = 'pink';
     whiteEggGang.color = 'white';
     brownEggGang.color = 'tan';
+
     background(backgroundStart)
     if (gameState=='start'){
         //setting up start screen
@@ -159,16 +124,16 @@ window.draw = function(){
     text("press enter to press a button!, press W and D to select. W is up, s is down.",50, 230)
     //create sprites on the first draw loop
     if (firstDraw == 0){
-        let logoStart = new Sprite (250,150, 50,20,'n')
+        logoStart = new Sprite (250,150, 50,20,'n')
         logoStart.image= (logo);
         logoStart.scale = (0.6);
-        let buttonStart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
+        buttonStart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
         buttonStart.textsize = BUTTON_SIZE[2]
         buttonStart.text = 'start a game ';
-        let buttonControl = new Sprite(BUTTON_POSITION[2],BUTTON_POSITION[3],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
+        buttonControl = new Sprite(BUTTON_POSITION[2],BUTTON_POSITION[3],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
         buttonControl.textsize = BUTTON_SIZE[2];
         buttonControl.text = 'controls- hold enter button to see'
-        let indicator = new Sprite(140,300,10,'s')
+        indicator = new Sprite(140,300,10,'s')
         startScreenSprites.add(buttonStart);
         startScreenSprites.add(buttonControl);
         startScreenSprites.add(indicator);
@@ -225,12 +190,6 @@ window.draw = function(){
         background('red');
         //load button sprites
         if (firstDraw == 0){
-            fb_get_high_score_PES()
-            fb_data = fb_highScore;
-            if (score > fb_highScore){
-                fb_highScore = score;
-                text("You got a new high Score!",50,300)
-            }
             pinkEgg.x = PINK_EGG_START_POSITION[0];
             pinkEgg.y = PINK_EGG_START_POSITION[1];
             buttonRestart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
@@ -488,7 +447,7 @@ function phase2(){
     console.log(brownEggsFired)
     const brownEggPosition= 50;
     if (frameCount%100==0 && ENEMIES_TO_FIRE>brownEggsFired){
-        let brownEgg = new Sprite(brownEggPosition,brownEggPosition,PINK_EGG_SIZE,'d');
+        brownEgg = new Sprite(brownEggPosition,brownEggPosition,PINK_EGG_SIZE,'d');
         brownEgg.vel.x = (enemyVelocity);
         brownEggGang.add(brownEgg);
         allEggs.add(brownEgg);
@@ -498,7 +457,7 @@ function phase2(){
     if (frameCount%20==0){
                 //fire bullets from brown eggs
                 for(count=0;count<brownEggGang.length;count++){
-                    let brownBullet = new Sprite (brownEggGang[count].x,brownEggGang[count].y,10,10,'dynamic');
+                    brownBullet = new Sprite (brownEggGang[count].x,brownEggGang[count].y,10,10,'dynamic');
                     brownBullet.vel.y = 3;
                     brownBullet.color = BULLET_COLORS[Math.floor(Math.random()*5)];
                     allEggs.add(brownBullet);
