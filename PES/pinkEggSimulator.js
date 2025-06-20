@@ -1,4 +1,3 @@
-
 console.log("hello! Welcome to my game")
 //all universal constants
     const CANVAS_WIDTH = 500;
@@ -54,6 +53,8 @@ console.log("hello! Welcome to my game")
     //backgrounds
     var backgroundPlay;
     var backgroundStart;
+    //firebase variables (will include prefix "fb_" and done in camel case afterwards)
+    var fb_highScore;
 /***********************************
  * set up
  ***********************************/
@@ -190,6 +191,14 @@ function draw(){
         background('red');
         //load button sprites
         if (firstDraw == 0){
+            
+            fb_get_high_score("PES").then((_highScore)=>{
+                console.log(_highScore);
+            }).catch((error) => {
+                console.log('Error!');
+                console.log(error);
+            })
+            
             pinkEgg.x = PINK_EGG_START_POSITION[0];
             pinkEgg.y = PINK_EGG_START_POSITION[1];
             buttonRestart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');

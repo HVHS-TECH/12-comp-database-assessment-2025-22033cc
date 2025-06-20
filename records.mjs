@@ -38,7 +38,7 @@ import { ref, set, get, update, query, orderByChild, limitToFirst }
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score_PES,
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,
 }
 
 
@@ -197,34 +197,41 @@ function fb_bobify() {
     });
 }
 /***************************************************************
-// function fb_get_high_score_PES()
-// called on running "pink Egg Simulator"
-// changes display name to "mr Bob"
+// function fb_get_high_score()
+// called on running dying in games
+// finds value of highscore of that game
  ****************************************************************/
-function fb_get_high_score_PES(){
-    console.log('%c fb_get_high_score_PES ',
-        'color: ' + COL_C +
-        '; background-color: ' + COL_B + ';');
-        const dbReference = ref(fb_Db, "user_Data/" + userUid + "/high_score_PES");
-        get(dbReference).then((snapshot) => {
-             var fb_data = snapshot.val();
-            if (fb_data != null) {
-                console.log('%c Record found! ',
-                    'color: ' + COL_C +
-                    '; background-color: ' + COL_G + ';');
-                console.log(fb_data);
-                 
-            }else{
-                console.log('%c Record NOT found ',
-                    'color: ' + COL_C +
-                    '; background-color: ' + COL_R + ';');
+ async function fb_get_high_score(_game){
+    console.log("fb_get_high_score()");
+    
+    //write down database path
+     const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/high_Score_"+_game);
+    //use "get()"function to find value of highscore
+     await get(dbReference).then((snapshot) => {
+        console.log(snapshot);
+        console.log(snapshot.val());
+        var fb_data = snapshot.val();
+        if (fb_data != null) {
+            console.log('Record found!');
+            console.log(fb_data);
+            return [fb_data];
+        } else {
+            console.log('Record NOT found');
+            return null;
+        }
 
-            }
+    }).catch((error) => {
+        console.log('Error!');
+        throw error;  
+    });
+ }
+ 
 
-        }).catch((error) => {
-            console.log('%c Error! ',
-                'color: ' + COL_C +
-                '; background-color: ' + COL_R + ';');
-            console.log(error);
-        })  
+/***************************************************************
+// function fb_update_high_score()
+// called on getting a higher score of a game
+// updates users high score to current high score
+****************************************************************/
+function fb_update_high_Score(_game){
+
 }
