@@ -55,6 +55,7 @@ console.log("hello! Welcome to my game")
     var backgroundStart;
     //firebase variables (will include prefix "fb_" and done in camel case afterwards)
     var fb_highScore;
+    var fb_highScoreNew;
 /***********************************
  * set up
  ***********************************/
@@ -189,16 +190,31 @@ function draw(){
     } else if (gameState=='end'){
         //if the player loses
         background('red');
-        //load button sprites
+        //load button sprites and high score
+
         if (firstDraw == 0){
-            
+            //find High Score from database using function fb_get_high_score()
             fb_get_high_score("PES").then((_highScore)=>{
-                console.log(_highScore);
+                console.log(_highScore)
+                //check if score is higher
+                if (score > _highScore){
+                    fb_highScore = score
+                    fb_highScoreNew = true
+                    console.log(fb_highScore)
+                    console.log(fb_highScoreNew)
+                    console.log("updating score to "+fb_highScore)
+                    fb_update_high_score(fb_highScore)
+                }else{
+                    fb_highScore = _highScore;
+                    fb_highScoreNew = false;
+                    console.log(fb_highScore);
+                }
+                console.log(fb_highScore);
             }).catch((error) => {
                 console.log('Error!');
                 console.log(error);
             })
-            
+            console.log(fb_highScoreNew);
             pinkEgg.x = PINK_EGG_START_POSITION[0];
             pinkEgg.y = PINK_EGG_START_POSITION[1];
             buttonRestart = new Sprite(BUTTON_POSITION[0],BUTTON_POSITION[1],BUTTON_SIZE[0],BUTTON_SIZE[1],'s');
@@ -215,7 +231,16 @@ function draw(){
             buttonOver = 1;
             firstDraw = 1;
         }
+           
+           
         //define text
+        if(fb_highScoreNew == true){
+            text("You got a new High score of "+fb_highScore,50,150);
+        }else if (fb_highScore == undefined){
+            text("looks like you haven't signed in yet!",50,150);
+        }else{
+            text("your high score is "+fb_highScore,50,150);
+        }
         text("Uh oh, you've been cracked!",50,100); 
         text("your score was "+score,50,200);
         text ('good job!',50,250)

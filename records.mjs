@@ -38,7 +38,7 @@ import { ref, set, get, update, query, orderByChild, limitToFirst }
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score
 }
 
 
@@ -201,30 +201,31 @@ function fb_bobify() {
 // called on running dying in games
 // finds value of highscore of that game
  ****************************************************************/
- async function fb_get_high_score(_game){
+ function fb_get_high_score(_game){
     console.log("fb_get_high_score()");
-    
-    //write down database path
-     const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/high_Score_"+_game);
-    //use "get()"function to find value of highscore
-     await get(dbReference).then((snapshot) => {
-        console.log(snapshot);
-        console.log(snapshot.val());
-        var fb_data = snapshot.val();
-        if (fb_data != null) {
-            console.log('Record found!');
-            console.log(fb_data);
-            return [fb_data];
-        } else {
-            console.log('Record NOT found');
-            return null;
-        }
+    return new Promise((resolve, reject) =>{
+        //write down database path
+        const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/high_Score_"+_game);
+        //use "get()"function to find value of highscore
+        get(dbReference).then((snapshot) => {
+            console.log(snapshot);
+            console.log(snapshot.val());
+            var fb_data = snapshot.val();
+            if (fb_data != null) {
+                console.log('Record found!');
+                console.log(fb_data);
+                resolve(fb_data);
+            } else {
+                console.log('Record NOT found');
+                resolve("failed");
+            }
 
-    }).catch((error) => {
-        console.log('Error!');
-        throw error;  
-    });
- }
+        }).catch((error) => {
+            console.log('Error!');
+            reject(error); 
+        });
+    })
+}
  
 
 /***************************************************************
@@ -232,6 +233,18 @@ function fb_bobify() {
 // called on getting a higher score of a game
 // updates users high score to current high score
 ****************************************************************/
-function fb_update_high_Score(_game){
-
+function fb_update_high_score(_newHighScore){
+    console.log("fb_update_high_score(_newHighScore)");
+    console.log(_newHighScore)
+    const dbReference = ref(fb_Db, "user_Data/" + userUid);
+    update(dbReference,{ high_Score_PES:_newHighScore}).then(() => {
+        console.log('%c highscore updated! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_G + ';');
+    }).catch((error) => {
+        console.log('%c Error! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_R + ';');
+        console.log(error);
+    });
 }
