@@ -14,7 +14,7 @@ var test = 1;
 // Import all external constants & functions required
 /***************************************************************/
 // Import all the constants & functions required from fb_io module
-import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score
+import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted
  }
     from './records.mjs';
     window.fb_Initialise = fb_Initialise;
@@ -23,8 +23,12 @@ import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_scor
     window.fb_bobify = fb_bobify;
     window.fb_get_high_score = fb_get_high_score;
     window.fb_update_high_score = fb_update_high_score;
+    window.fb_update_high_score_COC = fb_update_high_score_COC;
+    window.fb_read_sorted = fb_read_sorted;
 export{ fb_Authenticate}
 /**************************************************************/
 // index.html main code
 /**************************************************************/
 fb_Initialise();
+
+fb_read_sorted("PES","high_Score_PES")

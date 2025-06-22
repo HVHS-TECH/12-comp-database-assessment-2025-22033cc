@@ -25,20 +25,20 @@ console.log(userUid)
 import { initializeApp }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 
-import { getDatabase }
+import { getDatabase, query, orderByChild, limitToFirst }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
-import { ref, set, get, update, query, orderByChild, limitToFirst }
+import { ref, set, get, update, }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 /**************************************************************/
 // EXPORT FUNCTIONS
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted
 }
 
 
@@ -247,4 +247,38 @@ function fb_update_high_score(_newHighScore){
             '; background-color: ' + COL_R + ';');
         console.log(error);
     });
+}
+
+function fb_update_high_score_COC(newHighScore){
+       console.log("fb_update_high_score(_newHighScore)");
+    console.log(newHighScore)
+    const dbReference = ref(fb_Db, "user_Data/" + userUid);
+    update(dbReference,{ high_Score_COC:newHighScore}).then(() => {
+        console.log('%c highscore updated! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_G + ';');
+    }).catch((error) => {
+        console.log('%c Error! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_R + ';');
+        console.log(error);
+    });
+}
+
+function fb_read_sorted(_games,_sortKey) {
+    const dbReference = query( ref( fb_Db, "user_Data/*/"), orderByChild(_sortKey), limitToFirst(10));
+    get(dbReference).then((snapshot) => {
+
+        var fb_data = snapshot.val;
+        console.log(fb_data);
+        if (fb_data != null) {
+            console.log(fb_data)
+        } else {
+            console.log("something went wrong")
+
+        }
+
+    }).catch((error) => {
+        console.log(error)
+    })
 }
