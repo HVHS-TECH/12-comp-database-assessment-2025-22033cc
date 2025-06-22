@@ -248,7 +248,11 @@ function fb_update_high_score(_newHighScore){
         console.log(error);
     });
 }
-
+/***************************************************************
+// function fb_update_high_score_COC()
+// called on getting a higher score of a game of Coin Collector 
+// updates users high score to current high score
+****************************************************************/
 function fb_update_high_score_COC(newHighScore){
        console.log("fb_update_high_score(_newHighScore)");
     console.log(newHighScore)
@@ -264,11 +268,15 @@ function fb_update_high_score_COC(newHighScore){
         console.log(error);
     });
 }
-
+/***************************************************************
+// function fb_read_sorted()
+// called on loading onto a website
+// updates users high score to current high score
+****************************************************************/
 function fb_read_sorted(_games,_sortKey) {
     const dbReference = query( ref( fb_Db, "user_Data/*/"), orderByChild(_sortKey), limitToFirst(10));
     get(dbReference).then((snapshot) => {
-
+        console.log(snapshot)
         var fb_data = snapshot.val;
         console.log(fb_data);
         if (fb_data != null) {

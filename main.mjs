@@ -31,4 +31,4 @@ export{ fb_Authenticate}
 /**************************************************************/
 fb_Initialise();
 
-fb_read_sorted("PES","high_Score_PES")
+fb_read_sorted("PES","/high_Score_PES")

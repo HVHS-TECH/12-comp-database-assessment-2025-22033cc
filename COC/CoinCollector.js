@@ -227,6 +227,5 @@ function playerMovement() {
 	
 }
 function playerStop(_walls,_player){
-	_player.vel.x = 0;
-	_player.vel.y = 0;
+	console.log(yPress)
 }
