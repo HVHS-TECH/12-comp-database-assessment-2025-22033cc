@@ -25,7 +25,7 @@ console.log(userUid)
 import { initializeApp }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 
-import { getDatabase, query, orderByChild, limitToFirst }
+import { getDatabase, query, orderByChild, limitToLast }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut }
@@ -273,10 +273,10 @@ function fb_update_high_score_COC(newHighScore){
 // called on loading onto a website
 // updates users high score to current high score
 ****************************************************************/
-function fb_read_sorted(_games,_sortKey) {
-    const dbReference = query( ref( fb_Db, "user_Data/*/"), orderByChild(_sortKey), limitToFirst(10));
+function fb_read_sorted(_games) {
+        const dbReference = query( ref( fb_Db, "user_Data/*/"), orderByChild("high_Score_PES"), limitToLast(3));
     get(dbReference).then((snapshot) => {
-        console.log(snapshot)
+        console.log(snapshot.val)
         var fb_data = snapshot.val;
         console.log(fb_data);
         if (fb_data != null) {
