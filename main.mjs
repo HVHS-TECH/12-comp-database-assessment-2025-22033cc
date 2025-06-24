@@ -14,8 +14,8 @@ var test = 1;
 // Import all external constants & functions required
 /***************************************************************/
 // Import all the constants & functions required from fb_io module
-import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted
- }
+import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,fb_createAccount,
+}
     from './records.mjs';
     window.fb_Initialise = fb_Initialise;
     window.fb_Authenticate = fb_Authenticate;
@@ -25,6 +25,7 @@ import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_scor
     window.fb_update_high_score = fb_update_high_score;
     window.fb_update_high_score_COC = fb_update_high_score_COC;
     window.fb_read_sorted = fb_read_sorted;
+    window.fb_createAccount = fb_createAccount;
 export{ fb_Authenticate}
 /**************************************************************/
 // index.html main code

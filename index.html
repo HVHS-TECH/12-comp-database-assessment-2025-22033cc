@@ -11,10 +11,25 @@
     <p>welcome to the well designed website with many games, games to play to be found here </p>
     
     <!--Log into website-->
-    <button class="buttons" onclick="fb_Authenticate()">Log in</button>
+    
     <!--Run through records of account-->
     <button class="buttons" onclick="fb_RunRecords()">Check stats</button>
     <button class="buttons" onclick="fb_bobify()">bobify username</button>
+    <button class="buttons" onclick="fb_Authenticate()"> Sign in </button>
+    <button class="buttons" onclick="fb_createAccount()"">New? create an account </button>
+    <p id="no account" style="display:none">seems like you haven't created an account yet</p>
+    
+    <!--log in form -->
+    <form id="fruitForm" style="display:none">
+        
+        <p>please fill in your name!!</p>
+        <!--User name-->
+        <label for="name">Your Name,Please:</label>
+      <input type="text" id="name" name="name" required />
+
+      <button id='googleButton' onclick="fb_Authenticate()">Log in with google</button>
+    </form>
+
     <!-- player stats-->
     <div id="stats">
         <p id = "displayName" class = "playerStats"></p>

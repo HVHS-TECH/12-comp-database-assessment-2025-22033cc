@@ -38,7 +38,8 @@ import { ref, set, get, update, }
 // List all the functions called by code or html outside of this module
 /**************************************************************/
 export{
-    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted
+    fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,
+    fb_createAccount
 }
 
 
@@ -103,7 +104,7 @@ function fb_Authenticate() {
              //if they haven't, make them choose username
              if (firstName == null){
                 alert("Welcome to this website!");
-                
+
                 while(firstName == null||firstName == ""||firstName === " "){
                     firstName = prompt("Your Username, Please");
                 }
@@ -128,8 +129,9 @@ function fb_Authenticate() {
             alert("Uh Oh, Something went wrong!")
             console.log(error)
         });
-        
+
 }
+
 
 function fb_RunRecords(){
 
@@ -274,10 +276,11 @@ function fb_update_high_score_COC(newHighScore){
 // updates users high score to current high score
 ****************************************************************/
 function fb_read_sorted(_games) {
-        const dbReference = query( ref( fb_Db, "user_Data/*/"), orderByChild("high_Score_PES"), limitToLast(3));
+    const SORTKEY = "high_Score_"+_games
+        const dbReference = query( ref( fb_Db, "user_Data/"), orderByChild("high_Score_PES"), limitToLast(3))
     get(dbReference).then((snapshot) => {
-        console.log(snapshot.val)
-        var fb_data = snapshot.val;
+        console.log(snapshot.val())
+        var fb_data = snapshot.val();
         console.log(fb_data);
         if (fb_data != null) {
             console.log(fb_data)
@@ -285,8 +288,53 @@ function fb_read_sorted(_games) {
             console.log("something went wrong")
 
         }
-
     }).catch((error) => {
         console.log(error)
     })
+}
+
+
+
+
+
+
+function fb_createAccount(){
+        console.log('%c authenticate():',
+        'color:' + COL_C +
+        'background-color:' + COL_B + ';');
+    const AUTH = getAuth(); 
+    const PROVIDER = new GoogleAuthProvider();
+    PROVIDER.setCustomParameters({
+        prompt: 'select_account'
+    });
+    //login to users email
+    signInWithPopup(AUTH, PROVIDER).then((result) => {
+        alert("thank you for signing correctly")
+        //take users uid, email, and photo url
+        userUid = result.user.uid;
+        userEmail = result.user.email;
+        userPhoto = "fill in later";
+        console.log(userUid)
+        const REF = ref(fb_Db, "uid")
+
+        //see if they have logged in before:
+         const dbReference = ref(fb_Db, "user_Data/" + userUid +"/display_Name");
+        get(dbReference).then((snapshot) => {
+             var firstName = snapshot.val();
+
+             //if they haven't, make them choose username
+             if (firstName == null){
+                while(firstName ==null||firstName==""|| firstName==" "){
+
+                document.getElementById("fruitForm").style = "display: inline-block"
+                }
+                
+             } else{
+                alert("Welcome back!");
+             }
+            }) 
+        }) .catch((error) => {
+            alert("Uh Oh, Something went wrong!")
+            console.log(error)
+        });
 }
