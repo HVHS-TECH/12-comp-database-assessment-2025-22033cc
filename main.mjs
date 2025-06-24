@@ -32,4 +32,24 @@ export{ fb_Authenticate}
 /**************************************************************/
 fb_Initialise();
 
-fb_read_sorted("PES","/high_Score_PES")
+var LeaderBoard = fb_read_sorted("PES")
+
+console.log(LeaderBoard[0])
+ fb_read_sorted("PES").then((_LeaderBoard) => {
+console.log(_LeaderBoard)
+console.log(_LeaderBoard[0].high_Score_PES)
+var LeaderBoard = _LeaderBoard
+    console.log(LeaderBoard)
+    document.getElementById("#1").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_PES 
+    document.getElementById("#2").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_PES 
+    document.getElementById("#3").innerHTML = "#3     " + LeaderBoard[2].display_Name +"-"+LeaderBoard[2].high_Score_PES 
+    document.getElementById("#4").innerHTML = "#4     " + LeaderBoard[3].display_Name +"-"+LeaderBoard[3].high_Score_PES 
+    document.getElementById("#5").innerHTML = "#5     " + LeaderBoard[4].display_Name +"-"+LeaderBoard[4].high_Score_PES 
+    document.getElementById("#6").innerHTML = "#6     " + LeaderBoard[5].display_Name +"-"+LeaderBoard[5].high_Score_PES 
+    document.getElementById("#7").innerHTML = "#7     " + LeaderBoard[6].display_Name +"-"+LeaderBoard[6].high_Score_PES 
+    document.getElementById("#8").innerHTML = "#8     " + LeaderBoard[7].display_Name +"-"+LeaderBoard[7].high_Score_PES 
+    document.getElementById("#9").innerHTML = "#9     " + LeaderBoard[8].display_Name +"-"+LeaderBoard[8].high_Score_PES 
+    document.getElementById("#10").innerHTML = "#10     " + LeaderBoard[9].display_Name +"-"+LeaderBoard[9].high_Score_PES 
+ }).catch((error) => {
+    console.log(error)
+ });

@@ -277,19 +277,23 @@ function fb_update_high_score_COC(newHighScore){
 ****************************************************************/
 function fb_read_sorted(_games) {
     const SORTKEY = "high_Score_"+_games
-        const dbReference = query( ref( fb_Db, "user_Data/"), orderByChild("high_Score_PES"), limitToLast(3))
-    get(dbReference).then((snapshot) => {
-        console.log(snapshot.val())
-        var fb_data = snapshot.val();
-        console.log(fb_data);
-        if (fb_data != null) {
-            console.log(fb_data)
-        } else {
-            console.log("something went wrong")
+    return new Promise((resolve, reject) =>{
+            const dbReference = query( ref( fb_Db, "user_Data/"), orderByChild(SORTKEY), limitToLast(10))
+        get(dbReference).then((snapshot) => {
+            var fb_data = snapshot.val();
+            console.log(fb_data);
+            if (fb_data != null) {
+                resolve(Object.values(fb_data))
+            } else {
+                console.log("something went wrong")
+                resolve("failedd")
 
-        }
-    }).catch((error) => {
-        console.log(error)
+            }
+    
+        }).catch((error) => {
+            console.log(error)
+            reject(error)
+        })
     })
 }
 
@@ -328,13 +332,23 @@ function fb_createAccount(){
 
                 document.getElementById("fruitForm").style = "display: inline-block"
                 }
-                
-             } else{
-                alert("Welcome back!");
-             }
-            }) 
-        }) .catch((error) => {
+                const REF = ref(fb_Db, "user_Data/" + userUid );
+
+                        set(REF, {display_Name:firstName,email:userEmail,high_Score_COC:0,high_Score_PES:0,photo_URL:userPhoto,ranking_COC:0,ranking_PES:0 }).then(() => {
+                            console.log("PLEASE WORK")
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            console.log('%c something went wrong! ',
+                            'color: ' + COL_C +
+                            '; background-color: ' + COL_R + ';');
+                        })
+                } else{
+                    alert("Welcome back!");
+                }
+            }) .catch((error) => {
             alert("Uh Oh, Something went wrong!")
             console.log(error)
         });
+})
 }
