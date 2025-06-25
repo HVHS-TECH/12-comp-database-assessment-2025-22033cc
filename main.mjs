@@ -38,7 +38,9 @@ console.log(LeaderBoard[0])
  fb_read_sorted("PES").then((_LeaderBoard) => {
 console.log(_LeaderBoard)
 console.log(_LeaderBoard[0].high_Score_PES)
-var LeaderBoard = _LeaderBoard
+var LeaderBoard = _LeaderBoard;
+LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_PES- a.high_Score_PES});
+//".read":"true === root.hasChild('admin').hasChild(${uid}) || auth.uid != null",
     console.log(LeaderBoard)
     document.getElementById("#1").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_PES 
     document.getElementById("#2").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_PES 

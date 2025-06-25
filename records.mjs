@@ -25,7 +25,7 @@ console.log(userUid)
 import { initializeApp }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 
-import { getDatabase, query, orderByChild, limitToLast }
+import { getDatabase, query, orderByChild,orderByValue, limitToLast,limitToFirst }
     from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
 
 import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut }
@@ -276,25 +276,28 @@ function fb_update_high_score_COC(newHighScore){
 // updates users high score to current high score
 ****************************************************************/
 function fb_read_sorted(_games) {
-    const SORTKEY = "high_Score_"+_games
-    return new Promise((resolve, reject) =>{
-            const dbReference = query( ref( fb_Db, "user_Data/"), orderByChild(SORTKEY), limitToLast(10))
+    const SORTKEY = "high_Score_" + _games
+    console.log(SORTKEY)
+    return new Promise((resolve, reject) => {
+        const dbReference = query(ref(fb_Db, "user_Data"), orderByChild(SORTKEY), limitToLast(100))
         get(dbReference).then((snapshot) => {
             var fb_data = snapshot.val();
             console.log(fb_data);
             if (fb_data != null) {
-                resolve(Object.values(fb_data))
+                resolve(Object.values(fb_data));
+
             } else {
                 console.log("something went wrong")
                 resolve("failedd")
 
             }
-    
+
         }).catch((error) => {
             console.log(error)
             reject(error)
         })
     })
+
 }
 
 
