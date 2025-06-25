@@ -39,7 +39,7 @@ import { ref, set, get, update, }
 /**************************************************************/
 export{
     fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,
-    fb_createAccount
+    fb_createAccount,fb_profileAuthState
 }
 
 
@@ -112,6 +112,7 @@ function fb_Authenticate() {
             document.getElementById("PESLINK").style = "display:inline-block"
             document.getElementById("COCLINK").style = "display:inline-block"
             document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
              }
         })
     })
@@ -297,7 +298,7 @@ function fb_createAccount(){
                 if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
                     console.log(firstName)
                     var firstAge = document.getElementById('age').value
-                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge="e")
+                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"){
                     console.log(firstAge)
                         const REF = ref(fb_Db, "user_Data/" + userUid );
 
@@ -314,6 +315,9 @@ function fb_createAccount(){
                             document.getElementById("PESLINK").style = "display:inline-block"
                             document.getElementById("COCLINK").style = "display:inline-block"
                             document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+                            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
+
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -321,6 +325,7 @@ function fb_createAccount(){
                             'color: ' + COL_C +
                             '; background-color: ' + COL_R + ';');
                         })
+                    }
                 }else{
                     document.getElementById("playertalk").innerHTML =firstName +" is an invalid user Name"
 
@@ -380,3 +385,42 @@ function fb_createAccount(){
 }
 */
 
+function fb_profileAuthState() {
+    const auth = getAuth()
+    onAuthStateChanged(auth, (user) => {
+        console.log(user);
+        console.log("WHY DID YOU LEAVE ME")
+         userUid = user.uid;
+        userEmail =user.email;
+        userPhoto = user.photoURL;
+         const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/display_Name");
+        //use "get()"function to find value of display_Name
+        get(dbReference).then((snapshot) => {
+            console.log(snapshot);
+            console.log(snapshot.val());
+            var user_Name = snapshot.val();
+            if (user_Name != null) {
+                console.log('Record found!');
+                console.log(user_Name);
+                 console.log(userPhoto)
+                document.getElementById("PESLINK").style = "display:inline-block"
+                document.getElementById("COCLINK").style = "display:inline-block"
+                document.getElementById("signIn").innerHTML = "<p>User Name:"+user_Name+"</p> <p>status:logged in</p>"
+                document.getElementById("playertalk").style = "display:none"
+
+                document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
+            } else {
+                console.log('Record NOT found');
+    
+
+            }
+
+        }).catch((error) => {
+            console.log('Error!');
+            console.log(error);
+        });
+    })
+       
+
+   
+}
