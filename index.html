@@ -15,49 +15,70 @@
     <!--Run through records of account-->
     <button class="buttons" onclick="fb_RunRecords()">Check stats</button>
     <button class="buttons" onclick="fb_bobify()">bobify username</button>
-    <button class="buttons" onclick="fb_Authenticate()"> Sign in </button>
-    <button class="buttons" onclick="fb_createAccount()"">New? create an account </button>
-    <p id="no account" style="display:none">seems like you haven't created an account yet</p>
+    <div id="signIn">
+    <button class="buttons" onclick="fb_Authenticate()" style="display:inline-block"> Sign in/Create Account </button>
+    </div>
+    <!--<button class="buttons" onclick="fb_createAccount()"">New? create an account </button>-->
+    <p id="playertalk" style="display:none"></p>
     
+
     <!--log in form -->
-    <form id="fruitForm" style="display:none">
+    <div id="form" style=display:none>
         
         <p>please fill in your name!!</p>
         <!--User name-->
         <label for="name">Your Name,Please:</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" name="name" /><br>
+      <label for="age"> your Age, Please </label>
+      <input type="number" id="age" name="name" /><br>
+      <button class="enteringButton" onclick="fb_createAccount()">Create Account!</button>
 
-      <button id='googleButton' onclick="fb_Authenticate()">Log in with google</button>
-    </form>
+    </div>
 
     <!-- player stats-->
     <div id="stats">
         <p id = "displayName" class = "playerStats"></p>
+        <p id = "userAge"class = "playerStats"></p>
         <p id = "highScoreCOC" class = "playerStats"></p>
         <p id = "highScorePES"class = "playerStats"></p>
-        <p id = "rankingCOC"class = "playerStats"></p>
-        <p id = "rankningPES"class = "playerStats"></p>
+        
     </div>
     <!-- games-->
-     <div id="soManyGames">
-        <p> please log in on each site, Will be fixed later</p>
-        <a class="games" href="PES/pinkEggSimulator.html">Pink Egg simulator</a>
-        <a class="games" href="COC/CoinCollector.html">A game that works: Coin Collector</a>
-    </div>
+     <div class="soManyGames">
+            
+            
+            <div id="PES" class="soManyGames"> 
 
-    <div id="top10"> 
-       
-        <p class="board" id = "#1"> </p>
-        <p class="board" id = "#2"> </p>
-        <p class="board" id = "#3"> </p>
-        <p class="board" id = "#4"> </p>
-        <p class="board" id = "#5"> </p>
-        <p class="board" id = "#6"> </p>
-        <p class="board" id = "#7"> </p>
-        <p class="board" id = "#8"> </p>
-        <p class="board" id = "#9"> </p>
-        <p class="board" id = "#10"> </p>
-      
+                <a class="games"id="PESLINK" href="PES/pinkEggSimulator.html" style="display:none">Play:Pink Egg simulator</a>
+                <h4>PINK EGG SIMULATOR: top 10</h4>
+                <p class="board" id = "#1PES"> </p>
+                <p class="board" id = "#2PES"> </p>
+                <p class="board" id = "#3PES"> </p>
+                <p class="board" id = "#4PES"> </p>
+                <p class="board" id = "#5PES"> </p>
+                <p class="board" id = "#6PES"> </p>
+                <p class="board" id = "#7PES"> </p>
+                <p class="board" id = "#8PES"> </p>
+                <p class="board" id = "#9PES"> </p>
+                <p class="board" id = "#10PES"> </p>
+        </div>
+
+        <div id="COC" class="SoManyGames">
+            <a class="games"id="COCLINK" href="COC/CoinCollector.html" style="display:None">A game that works: Coin Collector</a>
+        <h4> A game that works:Coin Collector- top 10</h4>
+            <p class="board" id = "#1COC"> </p>
+            <p class="board" id = "#2COC"> </p>
+            <p class="board" id = "#3COC"> </p>
+            <p class="board" id = "#4COC"> </p>
+            <p class="board" id = "#5COC"> </p>
+            <p class="board" id = "#6COC"> </p>
+            <p class="board" id = "#7COC"> </p>
+            <p class="board" id = "#8COC"> </p>
+            <p class="board" id = "#9COC"> </p>
+            <p class="board" id = "#10COC"> </p>
+        
+        </div>
+
     </div>
     <script type="module" src="./main.mjs"></script>
 </body>

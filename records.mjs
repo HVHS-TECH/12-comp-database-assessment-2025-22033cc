@@ -88,11 +88,13 @@ function fb_Authenticate() {
     });
     //login to users email
     signInWithPopup(AUTH, PROVIDER).then((result) => {
-        alert("thank you for signing correctly")
+        document.getElementById("playertalk").style = "display:inline-block"
+        document.getElementById("playertalk").innerHTML = "thank you for signing in correctly!"
         //take users uid, email, and photo url
         userUid = result.user.uid;
         userEmail = result.user.email;
-        userPhoto = "fill in later";
+        userPhoto = result.user.photoURL;
+        console.log(userPhoto);
         console.log(userUid)
         const REF = ref(fb_Db, "uid")
 
@@ -102,26 +104,14 @@ function fb_Authenticate() {
              var firstName = snapshot.val();
 
              //if they haven't, make them choose username
-             if (firstName == null){
-                alert("Welcome to this website!");
-
-                while(firstName == null||firstName == ""||firstName === " "){
-                    firstName = prompt("Your Username, Please");
-                }
-                //run through and write records for all games 
-                    const REF = ref(fb_Db, "user_Data/" + userUid );
-
-                    set(REF, {display_Name:firstName,email:userEmail,high_Score_COC:0,high_Score_PES:0,photo_URL:userPhoto,ranking_COC:0,ranking_PES:0 }).then(() => {
-                        console.log("PLEASE WORK")
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                        console.log('%c something went wrong! ',
-                        'color: ' + COL_C +
-                        '; background-color: ' + COL_R + ';');
-                    })
+             if (firstName == null){              
+                document.getElementById("playertalk").innerHTML = "Seems like you haven't made an account yet, "
+                document.getElementById("form").style = "display: inline-block"
              } else{
                 alert("Welcome back!");
+            document.getElementById("PESLINK").style = "display:inline-block"
+            document.getElementById("COCLINK").style = "display:inline-block"
+            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
              }
         })
     })
@@ -150,14 +140,13 @@ function fb_RunRecords(){
                     'color: ' + COL_C +
                     '; background-color: ' + COL_G + ';');
                 console.log(snapshot.val());
-                userStats = Object.values(snapshot.val());
+                userStats = snapshot.val();
                 //print out userStats
                 console.log(userStats);
-                document.getElementById("displayName").innerHTML = "hello "+userStats[0]+"!";
+                document.getElementById("displayName").innerHTML = "hello "+userStats.display_Name+"!";
                 document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[2];
                 document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[3];
-                document.getElementById("rankingCOC").innerHTML = "Coin Collector Ranking:"+userStats[5];
-                document.getElementById("rankingPES").innerHTML = "Pink Egg Simulator Ranking"+userStats[6];
+                document.getElementById("userAge").innerHTML = "Age:"+userStats[5]
             }else{
                 console.log('%c Record NOT found ',
                     'color: ' + COL_C +
@@ -302,10 +291,44 @@ function fb_read_sorted(_games) {
 
 
 
-
-
-
 function fb_createAccount(){
+                //run through and write records for all games
+                var firstName = document.getElementById('name').value
+                if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
+                    console.log(firstName)
+                    var firstAge = document.getElementById('age').value
+                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge="e")
+                    console.log(firstAge)
+                        const REF = ref(fb_Db, "user_Data/" + userUid );
+
+                        set(REF, {display_Name:firstName,
+                            email:userEmail,
+                            high_Score_COC:0,
+                            high_Score_PES:0,
+                            photo_URL:userPhoto,
+                            age:firstAge
+                            }).then(() => {
+                            console.log("PLEASE WORK")
+                            document.getElementById("playertalk").innerHTML = "Thank you for creating an account " + firstName+"!"
+                            document.getElementById("form").style = "display:none"
+                            document.getElementById("PESLINK").style = "display:inline-block"
+                            document.getElementById("COCLINK").style = "display:inline-block"
+                            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            console.log('%c something went wrong! ',
+                            'color: ' + COL_C +
+                            '; background-color: ' + COL_R + ';');
+                        })
+                }else{
+                    document.getElementById("playertalk").innerHTML =firstName +" is an invalid user Name"
+
+                }
+
+}
+
+/*function fb_createAccount(){
         console.log('%c authenticate():',
         'color:' + COL_C +
         'background-color:' + COL_B + ';');
@@ -355,3 +378,5 @@ function fb_createAccount(){
         });
 })
 }
+*/
+
