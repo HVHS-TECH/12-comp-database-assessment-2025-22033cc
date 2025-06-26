@@ -298,19 +298,18 @@ function fb_read_sorted(_games) {
 
 
 function fb_NewUserName(){
-    var new_Name = document.getElementById('formChange').value 
+    var new_Name = document.getElementById('newName').value 
+
 console.log("update username")
 console.log(new_Name)
-    if(new_Name !== null || new_Name !== undefined || new_Name !== ""|| new_Name !== " "){
-        const dbReference = ref(fb_Db, "/user_Data/" + userUid);
+    if(new_Name !== null || new_Name !== undefined || new_Name.trim() !== ""){
+        let dbReference = ref(fb_Db, "user_Data/" + userUid);
         update(dbReference,{"display_Name":new_Name}).then(() => {
             console.log(new_Name)
         }).catch((error) => {
-            console.log('%c Error! ',
-                'color: ' + COL_C +
-                '; background-color: ' + COL_R + ';');
+            console.log(' Error! ');
             console.log(error);
-        });
+        })
 }else{
     document.getElementById("playertalk").innerHTML = "invalid username"
 }
