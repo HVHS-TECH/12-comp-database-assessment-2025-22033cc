@@ -100,8 +100,8 @@ function draw() {
 				console.log(_highScore)
 				//check if score is higher
 				if (score > _highScore) {
-					highScore = score
-					highScoreNew = true
+					highScore = score;
+					highScoreNew = true;
 					console.log(highScore)
 					console.log(highScoreNew)
 					console.log("updating score to " + highScore)
@@ -121,7 +121,7 @@ function draw() {
 
 
 		}
-		if (highScore != undefined) {
+		if (highScore !== undefined) {
 			text("your high Score is $" + highScore, 50, 70);
 		} else {
 			text("looks like you haven't signed in Yet", 50, 70)

@@ -403,8 +403,17 @@ function fb_profileAuthState() {
                 console.log('Record found!');
                 console.log(user_Name);
                  console.log(userPhoto)
-                document.getElementById("PESLINK").style = "display:inline-block"
-                document.getElementById("COCLINK").style = "display:inline-block"
+                 const PES_EXIST = document.getElementById("#1PES")
+                 console.log(PES_EXIST)
+                 const COC_EXIST = document.getElementById("#1COC")
+                 console.log(COC_EXIST)
+                if(PES_EXIST !== null){
+                     document.getElementById("COCLINK").style = "display:inline-block"
+        
+                }
+                if(COC_EXIST !== null){
+                    document.getElementById("PESLINK").style = "display:inline-block"
+                }
                 document.getElementById("signIn").innerHTML = "<p>User Name:"+user_Name+"</p> <p>status:logged in</p>"
                 document.getElementById("playertalk").style = "display:none"
 

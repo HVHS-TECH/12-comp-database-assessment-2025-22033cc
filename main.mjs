@@ -47,6 +47,11 @@ console.log(_LeaderBoard[0].high_Score_PES)
 var LeaderBoard = _LeaderBoard;
 LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_PES- a.high_Score_PES});
 //".read":"true === root.hasChild('admin').hasChild(${uid}) || auth.uid != null",
+console.log(document.getElementById("1PES") !== undefined)
+const PES_EXIST = document.getElementById("#1PES")
+console.log(PES_EXIST)
+if(PES_EXIST !== null){
+    console.log("adding PES leaderboard")
     console.log(LeaderBoard)
     document.getElementById("#1PES").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_PES 
     document.getElementById("#2PES").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_PES 
@@ -58,20 +63,23 @@ LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_PES- a.high_Sc
     document.getElementById("#8PES").innerHTML = "#8     " + LeaderBoard[7].display_Name +"-"+LeaderBoard[7].high_Score_PES 
     document.getElementById("#9PES").innerHTML = "#9     " + LeaderBoard[8].display_Name +"-"+LeaderBoard[8].high_Score_PES 
     document.getElementById("#10PES").innerHTML = "#10     " + LeaderBoard[9].display_Name +"-"+LeaderBoard[9].high_Score_PES 
-
-LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_COC- a.high_Score_COC});
-console.log(LeaderBoard)
-    document.getElementById("#1COC").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_COC 
-    document.getElementById("#2COC").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_COC
-    document.getElementById("#3COC").innerHTML = "#3     " + LeaderBoard[2].display_Name +"-"+LeaderBoard[2].high_Score_COC 
-    document.getElementById("#4COC").innerHTML = "#4     " + LeaderBoard[3].display_Name +"-"+LeaderBoard[3].high_Score_COC
-    document.getElementById("#5COC").innerHTML = "#5     " + LeaderBoard[4].display_Name +"-"+LeaderBoard[4].high_Score_COC 
-    document.getElementById("#6COC").innerHTML = "#6     " + LeaderBoard[5].display_Name +"-"+LeaderBoard[5].high_Score_COC
-    document.getElementById("#7COC").innerHTML = "#7     " + LeaderBoard[6].display_Name +"-"+LeaderBoard[6].high_Score_COC
-    document.getElementById("#8COC").innerHTML = "#8     " + LeaderBoard[7].display_Name +"-"+LeaderBoard[7].high_Score_COC
-    document.getElementById("#9COC").innerHTML = "#9     " + LeaderBoard[8].display_Name +"-"+LeaderBoard[8].high_Score_COC
-    document.getElementById("#10COC").innerHTML = "#10     " + LeaderBoard[9].display_Name +"-"+LeaderBoard[9].high_Score_COC
-
+}
+const COC_EXIST = document.getElementById("#1COC")
+console.log(COC_EXIST)
+if (COC_EXIST !== null){
+    LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_COC- a.high_Score_COC});
+    console.log(LeaderBoard)
+        document.getElementById("#1COC").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_COC 
+        document.getElementById("#2COC").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_COC
+        document.getElementById("#3COC").innerHTML = "#3     " + LeaderBoard[2].display_Name +"-"+LeaderBoard[2].high_Score_COC 
+        document.getElementById("#4COC").innerHTML = "#4     " + LeaderBoard[3].display_Name +"-"+LeaderBoard[3].high_Score_COC
+        document.getElementById("#5COC").innerHTML = "#5     " + LeaderBoard[4].display_Name +"-"+LeaderBoard[4].high_Score_COC 
+        document.getElementById("#6COC").innerHTML = "#6     " + LeaderBoard[5].display_Name +"-"+LeaderBoard[5].high_Score_COC
+        document.getElementById("#7COC").innerHTML = "#7     " + LeaderBoard[6].display_Name +"-"+LeaderBoard[6].high_Score_COC
+        document.getElementById("#8COC").innerHTML = "#8     " + LeaderBoard[7].display_Name +"-"+LeaderBoard[7].high_Score_COC
+        document.getElementById("#9COC").innerHTML = "#9     " + LeaderBoard[8].display_Name +"-"+LeaderBoard[8].high_Score_COC
+        document.getElementById("#10COC").innerHTML = "#10     " + LeaderBoard[9].display_Name +"-"+LeaderBoard[9].high_Score_COC
+}
  }).catch((error) => {
     console.log(error)
  });
