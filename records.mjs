@@ -321,6 +321,7 @@ function fb_createAccount(){
                 if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
                     console.log(firstName)
                     var firstAge;
+                    console.log(document.getElementById("userage").value)
                     firstAge = document.getElementById("userage").value
                     if(Number.isInteger(firstAge)){
                     if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
