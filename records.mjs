@@ -323,7 +323,8 @@ function fb_createAccount(){
                     var firstAge = document.getElementById('age').value
                     if(Number.isInteger(value)){
                     if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
-                    const REF = ref(fb_Db, "user_Data/"+ userUid)
+                   
+                        const REF = ref(fb_Db, "user_Data/"+ userUid)
                         set(REF, {display_Name:firstName,
                             email:userEmail,
                             high_Score_COC:0,
