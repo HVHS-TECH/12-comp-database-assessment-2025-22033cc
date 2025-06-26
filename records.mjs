@@ -39,7 +39,7 @@ import { ref, set, get, update, }
 /**************************************************************/
 export{
     fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,
-    fb_createAccount,fb_profileAuthState
+    fb_createAccount,fb_profileAuthState,fb_NewUserName
 }
 
 
@@ -291,14 +291,70 @@ function fb_read_sorted(_games) {
 }
 
 
+function fb_NewUserName(){
+    var new_Name = document.getElementById('
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        formChange').value 
+console.log("update username")
+console.log(new_Name)
 
+    const dbReference = ref(fb_Db,  "user_Data/" + userUid);
+    update(dbReference, {display_Name:new_Name}).then(() => {
+        console.log(new_Name)
+    }).catch((error) => {
+        console.log('%c Error! ',
+            'color: ' + COL_C +
+            '; background-color: ' + COL_R + ';');
+        console.log(error);
+    });
+}
 function fb_createAccount(){
                 //run through and write records for all games
                 var firstName = document.getElementById('name').value
                 if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
                     console.log(firstName)
                     var firstAge = document.getElementById('age').value
-                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"){
+                    if(Number.isInteger(value)){
+                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
                     console.log(firstAge)
                         const REF = ref(fb_Db, "user_Data/" + userUid );
 
@@ -325,11 +381,18 @@ function fb_createAccount(){
                             'color: ' + COL_C +
                             '; background-color: ' + COL_R + ';');
                         })
+        
+                    }else{
+                        document.getElementById("playertalk").innerHTML =firstName +" is an invalid age"
                     }
+                }else{
+                    document.getElementById("playertalk").innerHTML ="please express your age as an interger rounded down"
+                }
                 }else{
                     document.getElementById("playertalk").innerHTML =firstName +" is an invalid user Name"
 
                 }
+            
 
 }
 
@@ -388,48 +451,54 @@ function fb_createAccount(){
 function fb_profileAuthState() {
     const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
-        console.log(user);
-        console.log("WHY DID YOU LEAVE ME")
-         userUid = user.uid;
-        userEmail =user.email;
-        userPhoto = user.photoURL;
-         const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/display_Name");
-        //use "get()"function to find value of display_Name
-        get(dbReference).then((snapshot) => {
-            console.log(snapshot);
-            console.log(snapshot.val());
-            var user_Name = snapshot.val();
-            if (user_Name != null) {
-                console.log('Record found!');
-                console.log(user_Name);
-                 console.log(userPhoto)
-                 const PES_EXIST = document.getElementById("#1PES")
-                 console.log(PES_EXIST)
-                 const COC_EXIST = document.getElementById("#1COC")
-                 console.log(COC_EXIST)
-                if(PES_EXIST !== null){
-                     document.getElementById("COCLINK").style = "display:inline-block"
+        if (user !== null){
+            console.log(user);
+            console.log("WHY DID YOU LEAVE ME")
+            userUid = user.uid;
+            userEmail =user.email;
+            userPhoto = user.photoURL;
+            const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/display_Name");
+            //use "get()"function to find value of display_Name
+            get(dbReference).then((snapshot) => {
+                console.log(snapshot);
+                console.log(snapshot.val());
+                var user_Name = snapshot.val();
+                if (user_Name != null) {
+                    console.log('Record found!');
+                    console.log(user_Name);
+                    console.log(userPhoto)
+                    const PES_EXIST = document.getElementById("#1PES")
+                    console.log(PES_EXIST)
+                    const COC_EXIST = document.getElementById("#1COC")
+                    console.log(COC_EXIST)
+                    if(PES_EXIST !== null){
+                        document.getElementById("COCLINK").style = "display:inline-block"
+            
+                    }
+                    if(COC_EXIST !== null){
+                        document.getElementById("PESLINK").style = "display:inline-block"
+                    }
+                    document.getElementById("signIn").innerHTML = "<p>User Name:"+user_Name+"</p> <p>status:logged in</p>"
+                    document.getElementById("playertalk").style = "display:none"
+                    document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
+                    document.getElementById("user_name_change").style = "display:inline-block"
+                } else {
+                    console.log('Record NOT found');
         
+
                 }
-                if(COC_EXIST !== null){
-                    document.getElementById("PESLINK").style = "display:inline-block"
-                }
-                document.getElementById("signIn").innerHTML = "<p>User Name:"+user_Name+"</p> <p>status:logged in</p>"
-                document.getElementById("playertalk").style = "display:none"
 
-                document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
-            } else {
-                console.log('Record NOT found');
-    
-
-            }
-
-        }).catch((error) => {
-            console.log('Error!');
-            console.log(error);
-        });
+            }).catch((error) => {
+                console.log('Error!');
+                console.log(error);
+            });
+        }else{
+            console.log('please log in ')
+             document.getElementById("playertalk").style = "display:inline-block"
+    document.getElementById("playertalk").innerHTML = "Please log in to play games"
+        }
     })
-       
+    
 
    
 }

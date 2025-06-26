@@ -14,7 +14,7 @@ var test = 1;
 // Import all external constants & functions required
 /***************************************************************/
 // Import all the constants & functions required from fb_io module
-import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,fb_createAccount,fb_profileAuthState
+import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_score,fb_update_high_score,fb_update_high_score_COC,fb_read_sorted,fb_createAccount,fb_profileAuthState,fb_NewUserName
 }
     from './records.mjs';
     window.fb_Initialise = fb_Initialise;
@@ -27,16 +27,22 @@ import { fb_Initialise, fb_Authenticate,fb_RunRecords,fb_bobify,fb_get_high_scor
     window.fb_read_sorted = fb_read_sorted;
     window.fb_createAccount = fb_createAccount;
     window.fb_profileAuthState = fb_profileAuthState;
+    window.show_user_name_input = show_user_name_input;
+    window.fb_NewUserName = fb_NewUserName;
+    
 export{ fb_Authenticate}
 /**************************************************************/
 // index.html main code
 /**************************************************************/
 fb_Initialise();
-    document.getElementById("playertalk").style = "display:inline-block"
-    document.getElementById("playertalk").innerHTML = "Please log in to play games"
+   
 fb_profileAuthState();
 
+function show_user_name_input(){
+    console.log("showing form")
+    document.getElementById("formChange").style = "display:inline-block"
 
+}
 
 var LeaderBoard = fb_read_sorted("PES")
 
