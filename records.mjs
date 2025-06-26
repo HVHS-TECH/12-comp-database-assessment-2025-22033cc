@@ -108,11 +108,15 @@ function fb_Authenticate() {
                 document.getElementById("playertalk").innerHTML = "Seems like you haven't made an account yet, "
                 document.getElementById("form").style = "display: inline-block"
              } else{
-                alert("Welcome back!");
-            document.getElementById("PESLINK").style = "display:inline-block"
-            document.getElementById("COCLINK").style = "display:inline-block"
-            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
-            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
+                
+            document.getElementById("playertalk").innerHTML = "welcome back!"
+                            document.getElementById("form").style = "display:none"
+                            document.getElementById("user_name_bobify").style = "display:inline-block";
+                            document.getElementById("user_name_change").style = "display:inline-block";
+                            document.getElementById("PESLINK").style = "display:inline-block"
+                            document.getElementById("COCLINK").style = "display:inline-block"
+                            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+                            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
              }
         })
     })
@@ -144,6 +148,8 @@ function fb_RunRecords(){
                 userStats = snapshot.val();
                 //print out userStats
                 console.log(userStats);
+                document.getElementById("user_name_bobify").style = "display:inline-block";
+                document.getElementById("user_name_change").style = "display:inline-block";
                 document.getElementById("displayName").innerHTML = "hello "+userStats.display_Name+"!";
                 document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[2];
                 document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[3];
@@ -328,6 +334,8 @@ function fb_createAccount(){
                             console.log("PLEASE WORK")
                             document.getElementById("playertalk").innerHTML = "Thank you for creating an account " + firstName+"!"
                             document.getElementById("form").style = "display:none"
+                            document.getElementById("user_name_bobify").style = "display:inline-block";
+                            document.getElementById("user_name_change").style = "display:inline-block";
                             document.getElementById("PESLINK").style = "display:inline-block"
                             document.getElementById("COCLINK").style = "display:inline-block"
                             document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
@@ -438,10 +446,14 @@ function fb_profileAuthState() {
                     if(COC_EXIST !== null){
                         document.getElementById("PESLINK").style = "display:inline-block"
                     }
-                    document.getElementById("signIn").innerHTML = "<p>User Name:"+user_Name+"</p> <p>status:logged in</p>"
-                    document.getElementById("playertalk").style = "display:none"
-                    document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
-                    document.getElementById("user_name_change").style = "display:inline-block"
+                            document.getElementById("playertalk").innerHTML = "welcome back!"
+                            document.getElementById("form").style = "display:none"
+                            document.getElementById("user_name_bobify").style = "display:inline-block";
+                            document.getElementById("user_name_change").style = "display:inline-block";
+                            document.getElementById("PESLINK").style = "display:inline-block"
+                            document.getElementById("COCLINK").style = "display:inline-block"
+                            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+                            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
                 } else {
                     console.log('Record NOT found');
         
