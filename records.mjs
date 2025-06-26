@@ -306,6 +306,7 @@ console.log(new_Name)
         let dbReference = ref(fb_Db, "user_Data/" + userUid);
         update(dbReference,{"display_Name":new_Name}).then(() => {
             console.log(new_Name)
+            document.getElementById("formChange").style ="display:none"
         }).catch((error) => {
             console.log(' Error! ');
             console.log(error);
