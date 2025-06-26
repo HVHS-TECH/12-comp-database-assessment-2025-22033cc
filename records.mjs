@@ -302,8 +302,8 @@ function fb_NewUserName(){
 console.log("update username")
 console.log(new_Name)
     if(new_Name !== null || new_Name !== undefined || new_Name !== ""|| new_Name !== " "){
-         const dbReference = ref(fb_Db, "user_Data/" + userUid);
-        update(dbReference, {display_Name:new_Name}).then(() => {
+        const dbReference = ref(fb_Db, "user_Data/" + userUid);
+        update(dbReference,{ display_Name:new_Name}).then(() => {
             console.log(new_Name)
         }).catch((error) => {
             console.log('%c Error! ',
@@ -323,9 +323,9 @@ function fb_createAccount(){
                     var firstAge = document.getElementById('age').value
                     if(Number.isInteger(value)){
                     if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
-                    console.log(firstAge)
-                        const REF = ref(fb_Db, "user_Data/" + userUid );
+                    console.log(firstAge)  const REF = ref(fb_Db, "user_Data/" + userUid );
 
+                      
                         set(REF, {display_Name:firstName,
                             email:userEmail,
                             high_Score_COC:0,
@@ -366,57 +366,6 @@ function fb_createAccount(){
 
 }
 
-/*function fb_createAccount(){
-        console.log('%c authenticate():',
-        'color:' + COL_C +
-        'background-color:' + COL_B + ';');
-    const AUTH = getAuth(); 
-    const PROVIDER = new GoogleAuthProvider();
-    PROVIDER.setCustomParameters({
-        prompt: 'select_account'
-    });
-    //login to users email
-    signInWithPopup(AUTH, PROVIDER).then((result) => {
-        alert("thank you for signing correctly")
-        //take users uid, email, and photo url
-        userUid = result.user.uid;
-        userEmail = result.user.email;
-        userPhoto = "fill in later";
-        console.log(userUid)
-        const REF = ref(fb_Db, "uid")
-
-        //see if they have logged in before:
-         const dbReference = ref(fb_Db, "user_Data/" + userUid +"/display_Name");
-        get(dbReference).then((snapshot) => {
-             var firstName = snapshot.val();
-
-             //if they haven't, make them choose username
-             if (firstName == null){
-                while(firstName ==null||firstName==""|| firstName==" "){
-
-                document.getElementById("fruitForm").style = "display: inline-block"
-                }
-                const REF = ref(fb_Db, "user_Data/" + userUid );
-
-                        set(REF, {display_Name:firstName,email:userEmail,high_Score_COC:0,high_Score_PES:0,photo_URL:userPhoto,ranking_COC:0,ranking_PES:0 }).then(() => {
-                            console.log("PLEASE WORK")
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            console.log('%c something went wrong! ',
-                            'color: ' + COL_C +
-                            '; background-color: ' + COL_R + ';');
-                        })
-                } else{
-                    alert("Welcome back!");
-                }
-            }) .catch((error) => {
-            alert("Uh Oh, Something went wrong!")
-            console.log(error)
-        });
-})
-}
-*/
 
 function fb_profileAuthState() {
     const auth = getAuth()
