@@ -320,8 +320,8 @@ function fb_createAccount(){
                 var firstName = document.getElementById('name').value
                 if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
                     console.log(firstName)
-                    var firstAge = document.getElementById('userage').value
-                    if(Number.isInteger(value)){
+                    var firstAge = document.getElementById("userage").value
+                    if(Number.isInteger(firstAge)){
                     if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
                    console.log("why isn't it working? why? why?")
                         const REF = ref(fb_Db, "user_Data/"+ userUid)
