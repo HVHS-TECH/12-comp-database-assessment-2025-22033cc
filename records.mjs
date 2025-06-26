@@ -302,7 +302,7 @@ function fb_NewUserName(){
 console.log("update username")
 console.log(new_Name)
     if(new_Name !== null || new_Name !== undefined || new_Name !== ""|| new_Name !== " "){
-        const dbReference = ref(fb_Db,  "user_Data/" + userUid);
+        const dbReference = ref(fb_Db,"user_Data/" + userUid);
         update(dbReference, {display_Name:new_Name}).then(() => {
             console.log(new_Name)
         }).catch((error) => {
@@ -311,6 +311,8 @@ console.log(new_Name)
                 '; background-color: ' + COL_R + ';');
             console.log(error);
         });
+}else{
+    document.getElementById("playertalk").innerHTML = "invalid username"
 }
 }
 function fb_createAccount(){
