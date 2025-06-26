@@ -323,7 +323,7 @@ function fb_createAccount(){
                     var firstAge;
                     console.log(document.getElementById("userage").value)
                     firstAge = document.getElementById("userage").value
-                    if(Number.isInteger(firstAge)){
+                    
                     if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
                    console.log("why isn't it working? why? why?")
                         const REF = ref(fb_Db, "user_Data/"+ userUid)
@@ -353,9 +353,7 @@ function fb_createAccount(){
                             '; background-color: ' + COL_R + ';');
                         })
         
-                    }else{
-                        document.getElementById("playertalk").innerHTML =firstName +" is an invalid age"
-                    }
+            
                 }else{
                     document.getElementById("playertalk").innerHTML ="please express your age as an interger rounded down"
                 }
