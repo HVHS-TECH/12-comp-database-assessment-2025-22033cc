@@ -416,9 +416,9 @@ function fb_profileAuthState() {
                     console.log(userName);
                     console.log(userPhoto)
                     const PES_EXIST = document.getElementById("#1PES")
-                    console.log(PES_EXIST)
+                    console.log(PES_EXIST !== null)
                     const COC_EXIST = document.getElementById("#1COC")
-                    console.log(COC_EXIST)
+                    console.log(COC_EXIST !== null)
                     if(PES_EXIST !== null){
                         document.getElementById("COCLINK").style = "display:inline-block"
             
