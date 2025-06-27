@@ -410,10 +410,10 @@ function fb_profileAuthState() {
             get(dbReference).then((snapshot) => {
                 console.log(snapshot);
                 console.log(snapshot.val());
-                var user_Name = snapshot.val();
-                if (user_Name != null) {
+                var userName = snapshot.val();
+                if (userName != null) {
                     console.log('Record found!');
-                    console.log(user_Name);
+                    console.log(userName);
                     console.log(userPhoto)
                     const PES_EXIST = document.getElementById("#1PES")
                     console.log(PES_EXIST)
@@ -433,7 +433,7 @@ function fb_profileAuthState() {
                             document.getElementById("user_name_change").style = "display:inline-block";
                             document.getElementById("PESLINK").style = "display:inline-block"
                             document.getElementById("COCLINK").style = "display:inline-block"
-                            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+                            document.getElementById("signIn").innerHTML = "<p>User Name:"+userName+"</p>"
                             document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
                 } else {
                     console.log('Record NOT found');
