@@ -1,5 +1,5 @@
 body{
-    background-color: #916953;
+    background-color: #cf8e80;
 }
 
 h1{
@@ -8,7 +8,7 @@ h1{
   font-weight: 150;
   font-style: normal;
 
-    color:#c3d8e3;
+    color:white;
 
 }
 h4{
@@ -31,7 +31,7 @@ p {
 }
 
 .buttons{
-     background-color:#916953;
+     background-color:#c97b51;
   border: none;
   padding: 10px 15px;
   margin: 5px;
