@@ -415,15 +415,14 @@ function fb_profileAuthState() {
                     console.log('Record found!');
                     console.log(userName);
                     console.log(userPhoto)
-                    const PES_EXIST = document.getElementById("#1PES")
-                    console.log(PES_EXIST !== null)
-                    const COC_EXIST = document.getElementById("#1COC")
+                    const PES_EXIST = document.getElementById("#PES")
+                    console.log(PES_EXIST == null)
+                    const COC_EXIST = document.getElementById("#COC")
                     console.log(COC_EXIST !== null)
-                    if(PES_EXIST !== null){
+                    if(PES_EXIST == null){
                         document.getElementById("COCLINK").style = "display:inline-block"
-            
                     }
-                    if(COC_EXIST !== null){
+                    if(COC_EXIST == null){
                         document.getElementById("PESLINK").style = "display:inline-block"
                     }
                      //displays all buttons to play games now that they are signed in 
