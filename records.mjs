@@ -153,8 +153,7 @@ function fb_RunRecords(){
                     'color: ' + COL_C +
                     '; background-color: ' + COL_G + ';');
                 console.log(snapshot.val());
-                userStats = Object.value(snapshot.val());
-                //dislay userStats
+                userStats = snapshot.val();
                 console.log(userStats);
                 document.getElementById("user_name_bobify").style = "display:inline-block";
                 document.getElementById("user_name_change").style = "display:inline-block";

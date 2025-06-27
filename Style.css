@@ -1,5 +1,5 @@
 body{
-    background-color: #cf8e80;
+    background-color: #916953;
 }
 
 h1{
@@ -8,11 +8,11 @@ h1{
   font-weight: 150;
   font-style: normal;
 
-    color:#def2fc;
+    color:#c3d8e3;
 
 }
 h4{
-    color:#def2fc;
+    color:#effaff;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 150;
@@ -22,7 +22,7 @@ h4{
 
 p {
     font-family: 'sans-serrif';
-    color: #def2fc
+    color: #c3d8e3
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -63,4 +63,7 @@ p {
 }
 #googleButton{
     background-color:#916953
+}
+.board{
+    color:#effaff;
 }
