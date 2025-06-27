@@ -415,12 +415,10 @@ function fb_profileAuthState() {
                     console.log('Record found!');
                     console.log(userName);
                     console.log(userPhoto);
-
-                    const PES_EXIST = document.getElementById("")
                     const PES_EXIST = document.getElementById("1#PES")
                     console.log(PES_EXIST == null)
                     const COC_EXIST = document.getElementById("1#COC")
-                    console.log(COC_EXIST !== null)
+                    console.log(COC_EXIST == null)
                     if(PES_EXIST == null){
                         document.getElementById("COCLINK").style = "display:inline-block"
                     }
