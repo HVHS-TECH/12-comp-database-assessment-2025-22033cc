@@ -1,3 +1,4 @@
+console.log("commit has pushed")
 /* setup constants */
 const canvasHeight = 500; 
 const canvasWidth = 500;
