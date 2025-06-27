@@ -399,6 +399,7 @@ function fb_createAccount(){
 function fb_profileAuthState() {
     const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
+        console.log(user);
         if (user.name !== null||user.name !== undefined ){
             console.log(user);
             console.log("WHY DID YOU LEAVE ME")
