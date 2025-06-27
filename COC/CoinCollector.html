@@ -14,10 +14,11 @@
   <script src="https://p5play.org/v3/planck.min.js"></script>
   <script src="https://p5play.org/v3/p5play.js"></script>
   
-  <!-- pink egg simulator and module js -->
+  <!-- coin collector and module js -->
   <script type="module" src="../main.mjs"></script>
   <script src="CoinCollector.js"></script>
   <link rel="stylesheet" href="../Style.css">
+  <link rel="stylesheet" href="CoinCollectorStyle.css">
   <h1 id="header"> A game that works: Coin Collector</h1>
 </head>
 
@@ -31,6 +32,17 @@
     <div id="profile_full">
         <div id ="profile_picture"></div>
         <p id="playertalk" style="display:none"></p>
+         <div id="stats">
+        <p id = "displayName" class = "playerStats"></p>
+        <p id = "highScoreCOC" class = "playerStats"></p>
+        <p id = "highScorePES"class = "playerStats"></p>
+        <p id = "rankingCOC"class = "playerStats"></p>
+        <p id = "rankningPES"class = "playerStats"></p>
+    </div>
+    <div id="soManyGames">
+       <a class="games" href="../index.html">Return to home</a>
+        <a class="games" href="../PES/pinkEggSimulator.html">Pink Egg simulator</a>
+    </div>
     </div>
       <div id="top10"> 
        <h4> A game that works:Coin Collector- top 10</h4>
@@ -47,16 +59,6 @@
       
     </div>
 
-    <div id="stats">
-        <p id = "displayName" class = "playerStats"></p>
-        <p id = "highScoreCOC" class = "playerStats"></p>
-        <p id = "highScorePES"class = "playerStats"></p>
-        <p id = "rankingCOC"class = "playerStats"></p>
-        <p id = "rankningPES"class = "playerStats"></p>
-    </div>
-    <div id="soManyGames">
-       <a class="games" href="../index.html">Return to home</a>
-        <a class="games" href="../PES/pinkEggSimulator.html">Pink Egg simulator</a>
-    </div>
+   
 </body>
 </html>

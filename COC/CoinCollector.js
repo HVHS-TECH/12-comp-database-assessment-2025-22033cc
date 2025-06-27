@@ -1,5 +1,5 @@
-/* setup*/
-const canvasHeight = 500;
+/* setup constants */
+const canvasHeight = 500; 
 const canvasWidth = 500;
 const WALL_THICKNESS = 3;
 const playerSize = 30;
@@ -7,6 +7,7 @@ const playerStart = 200;
 const coinSize = 20;
 const timeOut = 5000;
 const warning = 2000;
+//set up global variables 
 var Speed = 8;
 const controls = ['w', 'a', 's', 'd', 'space'];
 var score = 0;
@@ -18,13 +19,16 @@ var lives = 3;
 var firstDraw = 0;
 var highScore;
 var highScoreNew;
+//set up function, creates sprites 
 function setup() {
-	console.log("player");
+	//create canvas and set up settings
 	cnv = new Canvas(canvasWidth, canvasHeight);
 	displayMode('centered')
 	background("pink")
+	//create player character
 	player = new Sprite(playerStart, playerStart, playerSize, playerSize, 'k');
 	player.color = 'blue';
+	//create coin and enemy groups
 	totalCoin = new Group();
 	totalEnemy = new Group();
 	walls = new Group();
@@ -42,6 +46,7 @@ function setup() {
 }
 
 function draw() {
+	//if game is on start screen, run this code
 	if (gameState == "start") {
 
 		text("Coin Collector:game that works", 50, 50)
@@ -53,14 +58,16 @@ function draw() {
 			gameState = "running";
 		}
 	}
+	//if game is playing, run this code
 	if (gameState == "running") {
+		//set background to a lighter shade if lives is greater than 0, visual indicator that they are low on lives
 		if(lives== 0){
 			background('skyblue')
 		}else{
 			background('lightblue')
 		}
 		playerMovement();
-
+		//checks if the total amount of coins is maxed out, otherwise randomly creates coin
 		if (totalCoin.length < 10) {
 			if (random(0, 1000) < 15) {
 				createCoin()
@@ -69,23 +76,28 @@ function draw() {
 		} else {
 			console.log("limit reached")
 		}
+		//checks if the total amount of enemies is maxed out, otherwise randomly creates enemies
 		if (totalEnemy.length < 5) {
 			if (random(0, 1000) < 5) {
 				createEnemy();
 				console.log(random(0, 1000))
 			}
 		}
+		//display text 
 		text("score = " + score, 50, 50)
 		text("lives = " + lives, 50, 60)
+		//check if coins are going to disapear
 		for (i = 0; i < totalCoin.length; i++) {
 			checkCoinTime(totalCoin[i])
 		}
+		//check if enemeis are going to disapear
 		for (i = 0; i < totalEnemy.length; i++) {
 			checkEnemyTime(totalEnemy[i]);
 		}
-
+		//check if player collides with coins or enemy
 		totalCoin.collides(player, addPoint);
 		totalEnemy.collides(player, playerHitDebt);
+		//check if player has enough lives, else go to end screen
 		if (lives < 0) {
 			player.vel.y = 0;
 			player.vel.x = 0;
@@ -93,17 +105,17 @@ function draw() {
 			player.y = 250;
 			gameState = "dead";
 		}
+		//run function of player ran out of lives
 	} else if (gameState == "dead") {
 		background('blue');
 		if (firstDraw == 0) {
+			//get high score from database to check if current score has beaten it
 			fb_get_high_score("COC").then((_highScore) => {
 				console.log(_highScore)
 				//check if score is higher
 				if (score > _highScore) {
 					highScore = score;
-					highScoreNew = true;
-					console.log(highScore)
-					console.log(highScoreNew)
+					highScoreNew = true;//boolean to state that they have got a new high score 
 					console.log("updating score to " + highScore)
 					fb_update_high_score_COC(highScore)
 				} else {
@@ -121,7 +133,8 @@ function draw() {
 
 
 		}
-		if (highScore !== undefined) {
+		//if player accdentaly hasn't signed in 
+		if (highScor !== undefined) {
 			text("your high Score is $" + highScore, 50, 70);
 		} else {
 			text("looks like you haven't signed in Yet", 50, 70)

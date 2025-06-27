@@ -49,7 +49,7 @@ export{
 // intatilises connecting to firebase
  ****************************************************************/
 function fb_Initialise() {
-
+    //intialise and connect to database
     console.log('%c fb_Initialise(): ',
         'color: ' + COL_C +
         '; background-color: ' + COL_B + ';');
@@ -67,6 +67,7 @@ function fb_Initialise() {
         measurementId: "G-G7Z4YR3HX7"
     };
     const FB_GAMEAPP = initializeApp(FB_GAMECONFIG)
+    //create reference variable for database
     fb_Db = getDatabase(FB_GAMEAPP)
     console.info(fb_Db);
 }
@@ -75,7 +76,8 @@ function fb_Initialise() {
 /***************************************************************
 // function fb_Authenticate()
 // called by html button Log in 
-// call functions from import to login the user
+// call functions from import to login the user, and takes name, email
+photo url
  ****************************************************************/
 function fb_Authenticate() {
     console.log('%c authenticate():',
@@ -109,14 +111,15 @@ function fb_Authenticate() {
                 document.getElementById("form").style = "display: inline-block"
              } else{
                 
+            //display game links and such no that they are logged in 
             document.getElementById("playertalk").innerHTML = "welcome back!"
-                            document.getElementById("form").style = "display:none"
-                            document.getElementById("user_name_bobify").style = "display:inline-block";
-                            document.getElementById("user_name_change").style = "display:inline-block";
-                            document.getElementById("PESLINK").style = "display:inline-block"
-                            document.getElementById("COCLINK").style = "display:inline-block"
-                            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
-                            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
+            document.getElementById("form").style = "display:none"
+            document.getElementById("user_name_bobify").style = "display:inline-block";
+            document.getElementById("user_name_change").style = "display:inline-block";
+            document.getElementById("PESLINK").style = "display:inline-block"
+            document.getElementById("COCLINK").style = "display:inline-block"
+            document.getElementById("signIn").innerHTML = "<p>User Name:"+firstName+"</p>"
+            document.getElementById("profile_picture").innerHTML =" <img src= "+ userPhoto +" alt='Your Profile Picture!'>"
              }
         })
     })
@@ -127,7 +130,12 @@ function fb_Authenticate() {
 
 }
 
-
+/***************************************************************
+// function fb_runRecords()
+// called by html button Log in 
+// call functions from import to login the user, and takes name, email
+photo url
+ ****************************************************************/
 function fb_RunRecords(){
 
     if(userUid==null){
@@ -137,7 +145,7 @@ function fb_RunRecords(){
             'color: ' + COL_C +
             '; background-color: ' + COL_B + ';');
         const dbReference = ref(fb_Db, "user_Data/" + userUid);
-
+        //get data under users UID to display
         get(dbReference).then((snapshot) => {
              var fb_data = snapshot.val();
             if (fb_data != null) {
@@ -145,15 +153,15 @@ function fb_RunRecords(){
                     'color: ' + COL_C +
                     '; background-color: ' + COL_G + ';');
                 console.log(snapshot.val());
-                userStats = snapshot.val();
-                //print out userStats
+                userStats = Object.value(snapshot.val());
+                //dislay userStats
                 console.log(userStats);
                 document.getElementById("user_name_bobify").style = "display:inline-block";
                 document.getElementById("user_name_change").style = "display:inline-block";
                 document.getElementById("displayName").innerHTML = "hello "+userStats.display_Name+"!";
-                document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[2];
-                document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[3];
-                document.getElementById("userAge").innerHTML = "Age:"+userStats[5]
+                document.getElementById("highScoreCOC").innerHTML = "Coin Collector High Score:"+userStats[3];
+                document.getElementById("highScorePES").innerHTML = "Pink Egg Simulator High Score:"+userStats[4];
+                document.getElementById("userAge").innerHTML = "Age:"+userStats[1]
             }else{
                 console.log('%c Record NOT found ',
                     'color: ' + COL_C +
@@ -201,6 +209,7 @@ function fb_bobify() {
  ****************************************************************/
  function fb_get_high_score(_game){
     console.log("fb_get_high_score()");
+    //creates promise to return to javascript
     return new Promise((resolve, reject) =>{
         //write down database path
         const dbReference = ref(fb_Db, "/user_Data/" + userUid + "/high_Score_"+_game);
@@ -228,12 +237,13 @@ function fb_bobify() {
 
 /***************************************************************
 // function fb_update_high_score()
-// called on getting a higher score of a game
+// called on getting a higher score in pink egg simulator
 // updates users high score to current high score
 ****************************************************************/
 function fb_update_high_score(_newHighScore){
-    console.log("fb_update_high_score(_newHighScore)");
+
     console.log(_newHighScore)
+    //updates highscore inthe firebase  
     const dbReference = ref(fb_Db, "user_Data/" + userUid);
     update(dbReference,{ high_Score_PES:_newHighScore}).then(() => {
         console.log('%c highscore updated! ',
@@ -255,6 +265,7 @@ function fb_update_high_score_COC(newHighScore){
        console.log("fb_update_high_score(_newHighScore)");
     console.log(newHighScore)
     const dbReference = ref(fb_Db, "user_Data/" + userUid);
+    //updates highscore in the firebase
     update(dbReference,{ high_Score_COC:newHighScore}).then(() => {
         console.log('%c highscore updated! ',
             'color: ' + COL_C +
@@ -296,13 +307,20 @@ function fb_read_sorted(_games) {
 
 }
 
-
+/***************************************************************
+// function fb_newUserName()
+// called on pressing "change username " shown after filling form
+// updates users high score to current high score
+****************************************************************/
 function fb_NewUserName(){
+    //take username from input box
     var new_Name = document.getElementById('newName').value 
 
 console.log("update username")
 console.log(new_Name)
+    //checks if username is invalid
     if(new_Name !== null || new_Name !== undefined || new_Name.trim() !== ""){
+        //if passes invalids, update record in firebase
         let dbReference = ref(fb_Db, "user_Data/" + userUid);
         update(dbReference,{"display_Name":new_Name}).then(() => {
             console.log(new_Name)
@@ -312,20 +330,27 @@ console.log(new_Name)
             console.log(error);
         })
 }else{
+    //tell player its wrong
     document.getElementById("playertalk").innerHTML = "invalid username"
 }
 }
+/***************************************************************
+// function fb_createAccount()
+// called on pressing "Create Account! " shown after filling form
+// creates multiple child nodes underneath the player uid 
+****************************************************************/
 function fb_createAccount(){
                 //run through and write records for all games
                 var firstName = document.getElementById('name').value
-                if(firstName !== null||firstName !== undefined ||firstName!==""||firstName==" "){
+                if(firstName !== null || firstName !== undefined || firstName.trim() !== ""){
                     console.log(firstName)
                     var firstAge;
                     console.log(document.getElementById("userage").value)
                     firstAge = document.getElementById("userage").value
                     
-                    if(firstAge !== null|| firstAge !==undefined||firstAge !==""||firstAge!=="e"||firstAge !== 120 ||firstAge>0){
+                    if(firstAge !== null|| firstAge !==undefined||firstAge.trim() !== ""||firstAge!=="e"||firstAge !== 120 ||firstAge>=5){
                    console.log("why isn't it working? why? why?")
+                   //creates nodes for display name, email, age, high scores for both games and photo url
                         const REF = ref(fb_Db, "user_Data/"+ userUid)
                         set(REF, {display_Name:firstName,
                             email:userEmail,
@@ -335,6 +360,7 @@ function fb_createAccount(){
                             age:firstAge
                             }).then(() => {
                             console.log("PLEASE WORK")
+                            //displays all buttons to play games now that they are signed in 
                             document.getElementById("playertalk").innerHTML = "Thank you for creating an account " + firstName+"!"
                             document.getElementById("form").style = "display:none"
                             document.getElementById("user_name_bobify").style = "display:inline-block";
@@ -365,11 +391,15 @@ function fb_createAccount(){
 
 }
 
-
+/***************************************************************
+// function fb_profileAuthStat
+// called on loading page
+// checks if player has already signed in  
+****************************************************************/
 function fb_profileAuthState() {
     const auth = getAuth()
     onAuthStateChanged(auth, (user) => {
-        if (user !== null){
+        if (user.name !== null||user.name !== undefined ){
             console.log(user);
             console.log("WHY DID YOU LEAVE ME")
             userUid = user.uid;
@@ -396,6 +426,7 @@ function fb_profileAuthState() {
                     if(COC_EXIST !== null){
                         document.getElementById("PESLINK").style = "display:inline-block"
                     }
+                     //displays all buttons to play games now that they are signed in 
                             document.getElementById("playertalk").innerHTML = "welcome back!"
                             document.getElementById("form").style = "display:none"
                             document.getElementById("user_name_bobify").style = "display:inline-block";

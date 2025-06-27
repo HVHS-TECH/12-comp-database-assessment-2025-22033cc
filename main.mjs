@@ -37,28 +37,27 @@ export{ fb_Authenticate}
 fb_Initialise();
    
 fb_profileAuthState();
-
+/***************************************************************
+// function show_user_name_input()
+// called pressing sign in/create account when user is unregistered
+****************************************************************/
 function show_user_name_input(){
     console.log("showing form")
     document.getElementById("formChange").style = "display:inline-block"
 
 }
-
-var LeaderBoard = fb_read_sorted("PES")
-
-console.log(LeaderBoard[0])
+//read through the database to display leaderboard
  fb_read_sorted("PES").then((_LeaderBoard) => {
-console.log(_LeaderBoard)
-console.log(_LeaderBoard[0].high_Score_PES)
+
+//turn parameter into var for easier use
 var LeaderBoard = _LeaderBoard;
 LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_PES- a.high_Score_PES});
-//".read":"true === root.hasChild('admin').hasChild(${uid}) || auth.uid != null",
-console.log(document.getElementById("1PES") !== undefined)
+//check if the html for leaderboard Pink egg simulator exists
 const PES_EXIST = document.getElementById("#1PES")
-console.log(PES_EXIST)
 if(PES_EXIST !== null){
     console.log("adding PES leaderboard")
     console.log(LeaderBoard)
+    //display leaderboard stats
     document.getElementById("#1PES").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_PES 
     document.getElementById("#2PES").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_PES 
     document.getElementById("#3PES").innerHTML = "#3     " + LeaderBoard[2].display_Name +"-"+LeaderBoard[2].high_Score_PES 
@@ -70,11 +69,13 @@ if(PES_EXIST !== null){
     document.getElementById("#9PES").innerHTML = "#9     " + LeaderBoard[8].display_Name +"-"+LeaderBoard[8].high_Score_PES 
     document.getElementById("#10PES").innerHTML = "#10     " + LeaderBoard[9].display_Name +"-"+LeaderBoard[9].high_Score_PES 
 }
+//check if the html for leaderboard coin collector exists
 const COC_EXIST = document.getElementById("#1COC")
 console.log(COC_EXIST)
 if (COC_EXIST !== null){
     LeaderBoard = LeaderBoard.sort(function(a, b){return b.high_Score_COC- a.high_Score_COC});
     console.log(LeaderBoard)
+    //display leaderboard stats
         document.getElementById("#1COC").innerHTML = "#1     " + LeaderBoard[0].display_Name +"-"+LeaderBoard[0].high_Score_COC 
         document.getElementById("#2COC").innerHTML = "#2     " + LeaderBoard[1].display_Name +"-"+LeaderBoard[1].high_Score_COC
         document.getElementById("#3COC").innerHTML = "#3     " + LeaderBoard[2].display_Name +"-"+LeaderBoard[2].high_Score_COC 

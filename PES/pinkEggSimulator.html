@@ -8,6 +8,10 @@
   <meta name="author" content="Mr Britton">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- google fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <!-- P5.js & P5.play *****************************-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/p5.js" integrity="sha512-bzpp8klYroR6PFgL3RJ+VkvY5hJna7Zd38OA56peUDHSNQpSiN9lDQVnMYtcw7hoAVhbR6mAOdH+ymzg1o+G0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.8.0/addons/p5.sound.js" integrity="sha512-TU9AWtV5uUZPX8dbBAH8NQF1tSdigPRRT82vllAQ1Ke28puiqLA6ZVKxtUGlgrH6yWFnkKy+sE6luNEGH9ar0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -18,6 +22,7 @@
   <script type="module" src="../main.mjs"></script>
   <script src="pinkEggSimulator.js"></script>
   <link rel="stylesheet" href="../Style.css">
+  <link rel="stylesheet" href="pinkEggStyle.css">
   <h1 id="header"> Pink Egg Simulator</h1>
 </head>
 
@@ -25,13 +30,26 @@
   BODY
 ****************************************************-->
 <body>
+  <!-- user name changing buttons-->
    <div id="signIn">
     <button id= "user_name_change" class="buttons" onclick="show_user_name_input()" style = "display:none">change user name</button>
+    <button id="run_records" class="buttons" onclick="fb_RunRecords()" style = "display:none">see stats</button>
     </div>
-
+    <!-- profile of player-->
     <div id="profile_full">
         <div id ="profile_picture"></div>
         <p id="playertalk" style="display:none"></p>
+    </div>
+     <div id="stats">
+        <p id = "displayName" class = "playerStats"></p>
+        <p id = "highScoreCOC" class = "playerStats"></p>
+        <p id = "highScorePES"class = "playerStats"></p>
+        <p id = "rankingCOC"class = "playerStats"></p>
+        <p id = "rankningPES"class = "playerStats"></p>
+    </div>
+    <div id="soManyGames">
+       <a class="games"id="COCLINK" href="../index.html" style="display:inline-block">return to home</a>
+      <a class="games"id="COCLINK" href="../COC/CoinCollector.html" style="display:inline-block">A game that works: Coin Collector</a>
     </div>
     
      <div id="top10"> 
@@ -49,16 +67,5 @@
       
     </div>
 
-    <div id="stats">
-        <p id = "displayName" class = "playerStats"></p>
-        <p id = "highScoreCOC" class = "playerStats"></p>
-        <p id = "highScorePES"class = "playerStats"></p>
-        <p id = "rankingCOC"class = "playerStats"></p>
-        <p id = "rankningPES"class = "playerStats"></p>
-    </div>
-    <div id="soManyGames">
-       <a class="games"id="COCLINK" href="../index.html" style="display:inline-block">return to home</a>
-      <a class="games"id="COCLINK" href="../COC/CoinCollector.html" style="display:inline-block">A game that works: Coin Collector</a>
-    </div>
 </body>
 </html>
