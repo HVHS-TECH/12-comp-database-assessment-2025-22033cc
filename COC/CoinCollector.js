@@ -134,7 +134,7 @@ function draw() {
 
 		}
 		//if player accdentaly hasn't signed in 
-		if (highScor !== undefined) {
+		if (highScore !== undefined) {
 			text("your high Score is $" + highScore, 50, 70);
 		} else {
 			text("looks like you haven't signed in Yet", 50, 70)
