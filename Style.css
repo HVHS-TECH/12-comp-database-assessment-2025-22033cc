@@ -8,11 +8,11 @@ h1{
   font-weight: 150;
   font-style: normal;
 
-    color:#b8d0de
+    color:#def2fc;
 
 }
 h4{
-    color:#b8d0de;
+    color:#def2fc;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 150;
@@ -22,7 +22,7 @@ h4{
 
 p {
     font-family: 'sans-serrif';
-    color: #b8d0de;
+    color: #def2fc
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -58,7 +58,7 @@ p {
   font-weight: 100;
   font-style: normal;
   text-decoration:none;
-  
+
 
 }
 #googleButton{
