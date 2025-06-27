@@ -12,7 +12,7 @@ h1{
 
 }
 h4{
-    color:#effaff;
+    color:white;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 150;
@@ -22,7 +22,7 @@ h4{
 
 p {
     font-family: 'sans-serrif';
-    color: #c3d8e3
+    color: white
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -46,7 +46,7 @@ p {
 
 }
 .games{
-    background-color:#f745f1;
+    background-color:#decaaa;
     padding:10px 15px;
     margin:5px;
     color:black;
