@@ -8,11 +8,11 @@ h1{
   font-weight: 150;
   font-style: normal;
 
-    color:#cfac9d
+    color:#b8d0de
 
 }
 h4{
-    color:#cfac9d;
+    color:#b8d0de;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 150;
@@ -22,7 +22,7 @@ h4{
 
 p {
     font-family: 'sans-serrif';
-    color: #cfac9d;
+    color: #b8d0de;
     font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 100;
@@ -46,7 +46,7 @@ p {
 
 }
 .games{
-    background-color:#f745f1
+    background-color:#f745f1;
     padding:10px 15px;
     margin:5px;
     color:black;
@@ -58,6 +58,7 @@ p {
   font-weight: 100;
   font-style: normal;
   text-decoration:none;
+  
 
 }
 #googleButton{
