@@ -86,7 +86,7 @@ function fb_Authenticate() {
     const AUTH = getAuth(); 
     const PROVIDER = new GoogleAuthProvider();
     PROVIDER.setCustomParameters({
-        prompt: 'select_account'
+        prompt:'select_account'
     });
     //login to users email
     signInWithPopup(AUTH, PROVIDER).then((result) => {
@@ -340,14 +340,14 @@ console.log(new_Name)
 ****************************************************************/
 function fb_createAccount(){
                 //run through and write records for all games
-                var firstName = document.getElementById('name').value
+                var firstName = document.getElementById('UserName').value
                 if(firstName !== null || firstName !== undefined || firstName.trim() !== ""){
                     console.log(firstName)
                     var firstAge;
                     console.log(document.getElementById("userage").value)
                     firstAge = document.getElementById("userage").value
                     
-                    if(firstAge !== null|| firstAge !==undefined||firstAge.trim() !== ""||firstAge!=="e"||firstAge !== 120 ||firstAge>=5){
+                    if(firstAge == null|| firstAge == undefined||firstAge.trim() !== ""||firstAge !=="e"||firstAge == 120 ||5 >= firstAge){
                    console.log("why isn't it working? why? why?")
                    //creates nodes for display name, email, age, high scores for both games and photo url
                         const REF = ref(fb_Db, "user_Data/"+ userUid)
