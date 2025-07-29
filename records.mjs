@@ -341,13 +341,22 @@ console.log(new_Name)
 function fb_createAccount(){
                 //run through and write records for all games
                 var firstName = document.getElementById('UserName').value
-                if(firstName !== null || firstName !== undefined || firstName.trim() !== ""){
+                console.log(firstName)
+                if (firstName == null){
+                    console.log("balls")
+                    console.log(firstName)
+                }
+                if(firstName == null || firstName == undefined || firstName.trim() == ""||firstName == ""){
+              document.getElementById("playertalk").innerHTML =firstName +" is an invalid user Name"
+                }else{
+                    
+
                     console.log(firstName)
                     var firstAge;
                     console.log(document.getElementById("userage").value)
                     firstAge = document.getElementById("userage").value
                     
-                    if(firstAge == null|| firstAge == undefined||firstAge.trim() !== ""||firstAge !=="e"||firstAge == 120 ||5 >= firstAge){
+                    if(firstAge !== null&& firstAge == undefined&&firstAge.trim() !== ""&&firstAge !=="e"&&firstAge == 120 && firstAge <= 5){
                    console.log("why isn't it working? why? why?")
                    //creates nodes for display name, email, age, high scores for both games and photo url
                         const REF = ref(fb_Db, "user_Data/"+ userUid)
@@ -380,10 +389,8 @@ function fb_createAccount(){
         
             
                 }else{
-                    document.getElementById("playertalk").innerHTML ="please express your age as an interger rounded down"
+                    document.getElementById("playertalk").innerHTML ="please express your age as an interger rounded down & you must be between the ages 5-120"
                 }
-                }else{
-                    document.getElementById("playertalk").innerHTML =firstName +" is an invalid user Name"
 
                 }
             
